@@ -1,0 +1,120 @@
+{
+    "lab": {
+        "build_requirements": {
+            "platform": {
+                "arch": "i386", 
+                "build_steps": {
+                    "build": ["make -C ../src"], 
+                    "configure": [], 
+                    "post_build": ["sudo service apache2 restart"], 
+                    "pre_build": ["sudo apt-get update",
+                "sudo apt-get install -y php5 libapache2-mod-php5",
+                "sudo apt-get install -y apache2 php5-gd libcv-dev libcv2.3 libcvaux-dev libcvaux2.3 libhighgui-dev",
+                "sudo apt-get install -y libhighgui2.3 libopencv-calib3d-dev libopencv-calib3d2.3 libopencv-contrib-dev",
+                "sudo apt-get install -y libopencv-contrib2.3 libopencv-core-dev libopencv-core2.3 libopencv-dev",
+                "sudo apt-get install -y libopencv-features2d-dev libopencv-features2d2.3 libopencv-flann-dev",
+                "sudo apt-get install -y libopencv-flann2.3 libopencv-gpu-dev libopencv-gpu2.3 libopencv-highgui-dev",
+                "sudo apt-get install -y libopencv-highgui2.3 libopencv-imgproc-dev libopencv-imgproc2.3",
+                "sudo apt-get install -y libopencv-legacy-dev libopencv-legacy2.3 libopencv-ml-dev libopencv-ml2.3",
+                "sudo apt-get install -y libopencv-objdetect-dev libopencv-objdetect2.3 libopencv-video-dev libopencv-video2.3 opencv-doc python-opencv"
+                    ],
+                    "status": []
+                }, 
+                "installer": [], 
+                "os": "ubuntu", 
+                "osVersion": "12", 
+                "service_pack": ""
+            }
+        }, 
+        "description": {
+            "developer": [
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "jsivaswamy@iiit.ac.in", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Jayanthi Sivaswamy", 
+                    "organization": "", 
+                    "role": "Lab Developer", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "chawla@research.iiit.ac.in", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Chawla C", 
+                    "organization": "", 
+                    "role": "Lab RA", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "vsrao@students.iiit.ac.in", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "VS Rao", 
+                    "organization": "", 
+                    "role": "Lab RA", 
+                    "title": "", 
+                    "web": ""
+                }
+            ], 
+            "discipline": [
+                "Computer Science & Engineering"
+            ], 
+            "id": "cse19", 
+            "integration_level": 5, 
+            "name": "Image Processing", 
+            "server-side": true, 
+            "status": "Released", 
+            "type": ""
+        }, 
+        "runtime_requirements": {
+            "platform": {
+                "arch": "i386", 
+                "hosting": "dedicated", 
+                "installer": ["sudo apt-get update",
+                "sudo apt-get install -y php5 apache2"],
+                "lab_actions": {
+                    "backup": [], 
+                    "clean": [], 
+                    "init": ["mv /var/www/index.html index.html.default","cp -r ../build/* /var/www/"], 
+                    "pause": [], 
+                    "publish": [], 
+                    "restore": [], 
+                    "resume": [], 
+                    "shutdown": ["service apache2 stop"], 
+                    "start": ["service apache2 start"], 
+                    "stats": [], 
+                    "stop": []
+                }, 
+                "memory": {
+                    "max_required": "2gb", 
+                    "min_required": "256mb"
+                }, 
+                "os": "ubuntu", 
+                "osVersion": "12", 
+                "servicepack": "", 
+                "storage": {
+                    "min_required": "10gb"
+                }
+            }
+        }
+    }, 
+    "template": "1.0"
+}

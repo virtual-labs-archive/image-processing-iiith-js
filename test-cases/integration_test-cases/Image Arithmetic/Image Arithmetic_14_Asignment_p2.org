@@ -1,0 +1,40 @@
+* Author: Nihanth
+* Date Created: 15 Apr 2016
+* Environment
+  - OS: Windows 7, Linux
+  - Browsers: Firefox,Chrome
+  - Bandwidth : 100Mbps
+  - Hardware Configuration:8GBRAM , 
+  - Processor:i5
+
+* Objective
+  - To view and take the Asignment of the Image Arithmetic experiment
+
+* Pre conditions
+  - Refer to first test case [[https://github.com/Virtual-Labs/image-processing-iiith/blob/master/test-cases/integration_test-cases/Image Arithmetic/Image Arithmetic_01_Usability_smk.org][Image Arithmetic_01_Usability_smk.org]]
+
+* Post conditions
+  - Nil
+* Test Steps
+  1. Click on the Assessment link 
+  2. Click on the Asignment link
+  3. It should redirect to the Asignment page
+  4. Click on 'Click here to try it out' link
+  5. Select the task and click on the appropriate radio button
+  6. Select Type of Distance and click on the appropriate radio button
+  7. Click on the connectivity button and choose the type of connectivity and click on the appropriate radio button
+  8. Click on run button
+  9. Repeat 5,6,7,&8 steps for the different values
+
+* Expected result
+  1. A dropdown should be displayed on the screen
+  2. Asignment page should be opened
+  3. Content should be present with no distortions and Junk characters
+  4. It should redirect to a new tab with the asignment process
+  5. The choosen task and the type of distance should be selected
+  6. When we click on the connectivity button,a box should be displayed on the screen with the connectivity options selected connectivity should be highlighted
+  7. When we click on the run button, the asignment result should be displayed on the screen
+
+* Review/comments
+
+

@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 3.3  (Unix)">
+	<META NAME="CREATED" CONTENT="20111123;15522100">
+	<META NAME="CHANGED" CONTENT="20111123;19351400">
+</HEAD>
+<BODY LANG="en-IN" DIR="LTR">
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><B>Distance
+and Connectivity: Theory</B></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><B>Connectivity
+of pixels: </B></FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">Pixel
+connectivity describes a relation between two or more pixels. For two
+pixels to be connected they have to fulfill certain conditions on the
+pixel value and spatial adjacency. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">The
+pixel brightness condition: Their pixel values must be from the same
+set of values </FONT><EM><FONT SIZE=2 STYLE="font-size: 11pt">C</FONT></EM><FONT SIZE=2 STYLE="font-size: 11pt">.
+For a grayscale image, </FONT><EM><FONT SIZE=2 STYLE="font-size: 11pt">C</FONT></EM>
+<FONT SIZE=2 STYLE="font-size: 11pt">might be any range of possible
+gray-level values 0 to 255, </FONT><EM><FONT SIZE=2 STYLE="font-size: 11pt">e.g.</FONT></EM>
+<EM><FONT SIZE=2 STYLE="font-size: 11pt">C= {12,13,...40}</FONT></EM><FONT SIZE=2 STYLE="font-size: 11pt">,
+for a binary image we simply have </FONT><EM><FONT SIZE=2 STYLE="font-size: 11pt">C={1}</FONT></EM><FONT SIZE=2 STYLE="font-size: 11pt">.
+</FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">In
+order to understand the spatial adjacency condition, we first explain
+the notion of neighborhood. For a pixel </FONT><EM><FONT SIZE=2 STYLE="font-size: 11pt">p</FONT></EM>
+<FONT SIZE=2 STYLE="font-size: 11pt">with the coordinates </FONT><EM><FONT SIZE=2 STYLE="font-size: 11pt">(x,
+y),</FONT></EM> <FONT SIZE=2 STYLE="font-size: 11pt">the set of
+neighborhood pixels Nd (p) can be defined as follows:</FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><BR>
+</P>
+<TABLE WIDTH=590 CELLPADDING=7 CELLSPACING=0>
+	<COL WIDTH=371>
+	<COL WIDTH=191>
+	<TR VALIGN=TOP>
+		<TD WIDTH=371 HEIGHT=128 STYLE="border: none; padding: 0cm">
+		<font color="black">
+			<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><B>4- neighbors</B></FONT></P>
+			<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+			<FONT SIZE=2 STYLE="font-size: 11pt">For a pixel p (x,y) shown in
+			green circle, N4(p) is the set of 4-neigbors which share a face
+			(or edge of the pixel) with p. They are four in number and are
+			shown by orange circles. Two pixels p and q are <I>4-connected</I>
+			if q is in N<SUB>4</SUB>(p) and both p, q є C </FONT>
+			</P>
+			<P ALIGN=JUSTIFY><BR>
+			</P>
+			</font>
+		</TD>
+		<TD WIDTH=191 STYLE="border: none; padding: 0cm">
+			<P ALIGN=JUSTIFY STYLE="border: none; padding: 0cm">     
+			<IMG SRC="theory_html_m234eea5.png" NAME="Picture 12" ALIGN=BOTTOM WIDTH=150 HEIGHT=132 BORDER=0></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=371 STYLE="border: none; padding: 0cm">
+		<font color="black">
+			<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><B>8 –neighbors: </B></FONT>
+			</P>
+			<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+			<FONT SIZE=2 STYLE="font-size: 11pt">For a pixel p (x, y) shown in
+			green circle, N8(p) is the set of neighbours which share a face or
+			a vertex/corner. There are 8 such neighbours and they are shown by
+			orange circles. Two pixels p and q are 8<I>-connected</I> if q is
+			in N<SUB>8</SUB>(p) and both p,q є C</FONT></P>
+			<P ALIGN=JUSTIFY><BR>
+			</P>
+			</font>
+		</TD>
+		<TD WIDTH=191 STYLE="border: none; padding: 0cm">
+			<P ALIGN=JUSTIFY STYLE="border: none; padding: 0cm">     
+			<IMG SRC="theory_html_47936102.png" NAME="Picture 13" ALIGN=BOTTOM WIDTH=152 HEIGHT=130 BORDER=0></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=371 STYLE="border: none; padding: 0cm">
+		<font color="black">
+			<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+			<FONT SIZE=2 STYLE="font-size: 11pt"><B>m –neighbors (mixed
+			neighbors): </B></FONT>
+			</P>
+			<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+			<FONT SIZE=2 STYLE="font-size: 11pt">For a pixel p (x,y) shown in
+			green circle, Nd(p) is the set of diagonal neigbors shown by red
+			circles. Two pixels p and q with values from C are <I>m-connected
+			if: </I></FONT>
+			</P>
+			<OL TYPE=I>
+				<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+				<FONT SIZE=2 STYLE="font-size: 11pt">q is in N4(p), or</FONT></P>
+				<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; border: none; padding: 0cm">
+				<FONT SIZE=2 STYLE="font-size: 11pt">q is in Nd(p), and the set
+				N4(p) N4(q) has no pixels whose values are from C. </FONT>
+				</P>
+			</OL>
+			<P ALIGN=JUSTIFY><BR>
+			</P>
+			</font>
+		</TD>
+		<TD WIDTH=191 STYLE="border: none; padding: 0cm">
+			<P ALIGN=JUSTIFY STYLE="border: none; padding: 0cm">     
+			<IMG SRC="theory_html_m42d90418.png" NAME="Picture 14" ALIGN=BOTTOM WIDTH=149 HEIGHT=128 BORDER=0></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><B>Properties
+of connectivity: </B></FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">If
+we consider a pixel to be connected to itself (trivial connectivity)
+then connectivity is <I>reflexive</I>. A pixel and its neighbor are
+mutually connected and hence connectivity is also <I>symmetric</I>.
+4-connectivity and 8-connectivity are also <I>transitive</I>: if
+pixel A is connected to pixel B, and pixel B is connected to pixel C,
+then there exists a connected path between pixels A and C.</FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">Pixel
+connectivity is an equivalence relation as it is reflexive,
+symmetric, and transitive. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><B>Simplification
+of the definition of region and boundary in an image:</B></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">Let
+S represent a subset of pixels in an image. Two pixels are said to be
+connected in S if there exists a path between them consisting
+entirely of pixels in S. For a pixel p  S, the set of pixels p<SUB>i</SUB>
+ S that are connected to it is called connected component. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">In
+the event there is only one connected component, the set S is said to
+be a connected set and S is called a <U>region</U> in the given
+image. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">The
+<U>boundary</U> of a region R is the set of pixels in the region that
+have at least one neighbor that is not in R. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><B>Distance
+Metrics: </B></FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">On
+a discrete grid, the distance between two points a: (x<SUB>a</SUB>,
+y<SUB>a</SUB>) and b: (x<SUB>b</SUB>,y<SUB>b</SUB>) can be defined in
+a variety of ways. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><I>Euclidean
+distance</I>: In vector form, this is referred to as L2 norm. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><I>City-block
+distance</I><B>:</B> This is the 4-connected distance and sometime
+called Manhattan distance. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">In
+vector form, it is referred to as L1 norm. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><I>Chess-board
+distance</I><B>:</B> This is the 8-connected distance D8, also called
+as chess-board distance.</FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">In
+vector form, it is referred as L norm. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">Using
+these distance metrics, for a given pixel p, one can find pixels at
+equal distance from this pixel. These pixels form the iso-distance
+pixel set for the point p. </FONT>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt"><B>Properties
+of a true distance metric</B></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">Let
+a, b and c be three pixels with coordinates (x<SUB>a</SUB>, y<SUB>a</SUB>),
+(x<SUB>a</SUB>, y<SUB>b</SUB>) and (x<SUB>c</SUB>, y<SUB>c</SUB>)
+respectively. A distance function D is a metric if it has the
+following properties: </FONT>
+</P>
+<OL TYPE=a>
+	<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">D(a,b)
+	≥ 0 and D(a,b) = 0 iff a = b</FONT></P>
+	<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">D(a,
+	b) = D(a, b)</FONT></P>
+	<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT SIZE=2 STYLE="font-size: 11pt">D(a,
+	c) ≤ D(a, b) + D(b, c)</FONT></P>
+</OL>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><BR>
+</P>
+</BODY>
+</HTML>

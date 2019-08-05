@@ -1,0 +1,135 @@
+<b>Affine Transformation - Theory</b></p>
+
+<p>An affine transformation is a geometrical transformation which moves points
+  in space such that points which were lying on a line remain so after the
+  transformation. </p>
+
+<p>Given a point which is a point location [x, y]<sup>T</sup> , transformed
+  location after translation, rotation and scaling can be as follows.</p>
+ 
+<p align=center style='text-align:center'><img width=130
+height=47 id="Picture 1" src="affine/images/image012.jpg"></p>
+
+<table border=1 cellspacing=0 cellpadding=0
+       style='border-collapse:collapse;border:none; color: black;'>
+  <tr style='height:54.85pt'>
+    <td width=139 valign=top style='width:1.45in;border:solid black 1.0pt;
+	padding:0in 5.4pt 0in 5.4pt;height:54.85pt'>
+      Translation
+    </td>
+    <td width=210 valign=top style='width:157.5pt;border:solid black
+	1.0pt;
+	border-left:none;padding:0in 5.4pt 0in 5.4pt;height:54.85pt'>
+      <img width=60 height=45
+				       src="affine/images/image013.jpg">
+	<img width=56 height=49
+	     src="affine/images/image014.jpg"></p>
+    </td>
+    <td width=176 valign=top style='width:132.3pt;border:solid black
+	1.0pt;
+	border-left:none;padding:0in 5.4pt 0in 5.4pt;height:54.85pt'>
+      <img width=76 height=48
+				       src="affine/images/image015.jpg"></p>
+    </td>
+  </tr>
+  <tr>
+    <td width=139 valign=top style='width:1.45in;border:solid black 1.0pt;
+	border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+
+      Rotation (&#952;)
+
+    </td>
+    <td width=210 valign=top
+	style='width:157.5pt;border-top:none;border-left:
+	none;border-bottom:solid black 1.0pt;border-right:solid black
+	1.0pt;
+	padding:0in 5.4pt 0in 5.4pt'>
+      <img width=131 height=43
+				       src="affine/images/image016.jpg">
+	<img width=50 height=48
+	     src="affine/images/image017.jpg"></p>
+    </td>
+    <td width=176 valign=top
+	style='width:132.3pt;border-top:none;border-left:
+	none;border-bottom:solid black 1.0pt;border-right:solid
+	black 1.0pt;
+	padding:0in 5.4pt 0in 5.4pt'>
+      <img width=133 height=18
+				       id="Picture 7"
+				       src="affine/images/image018.jpg"></p>
+      <img width=133 height=18
+				       id="Picture 8"
+				       src="affine/images/image019.jpg"></p>
+    </td>
+  </tr>
+  <tr>
+    <td width=139 valign=top style='width:1.45in;border:solid black
+        1.0pt;
+	border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+      Scaling
+    </td>
+    <td width=210 valign=top
+	style='width:157.5pt;border-top:none;border-left:
+	none;border-bottom:solid black 1.0pt;border-right:solid black
+	1.0pt;
+	padding:0in 5.4pt 0in 5.4pt'>
+      <img width=70 height=50
+				       src="affine/images/image020.jpg">
+	<img width=49 height=47
+	     src="affine/images/image021.jpg"></p>
+    </td>
+    <td width=176 valign=top
+	style='width:132.3pt;border-top:none;border-left:
+	none;border-bottom:solid black 1.0pt;border-right:solid
+	black 1.0pt;
+	padding:0in 5.4pt 0in 5.4pt'>
+      <img width=80 height=19
+				       id="Picture 11"
+				       src="affine/images/image022.jpg"></p>
+      <img width=77 height=22
+				       id="Picture 12"
+				       src="affine/images/image023.jpg"></p>
+        </td>
+     </tr>
+  </table>
+
+<p> To geometrically transform an image, the result we seek is an image with
+  transformed coordinates. The result of applying the transformation function
+  is generally not an integer particularly in case of rotation and
+  scaling. This poses a problem since the image is defined on a grid
+  (coordnates have to be integer valued). The solution is interpolation.<p>n
+  implementation, image rotation is done as follows. Given I[m,n] to find a
+  transformed image X[m., n.] where [m., n.]= A x [m, n] + B according to the
+  above given equation: </p>
+
+<ol start="1" type="1"><li>Create a dummy array X[m., n.]. </li>
+  <li>Find the locations [m, n] in I that correspond to locations [., n.] in
+  the image X by applying the inverse transformation. I.e. A<sup>-1</sup>
+  ([m., n.]-B) = [m, n]. This can result in non-integer locations.</li>
+  <li>Find the pixel value at these source locations. If it is non-integer
+  valued locations, use an interpolation function.</li>
+  </ol><p>Example: Consider A to be rotation by 30 degrees. Let us take the
+  location [12, 13] in X and find its corresponding location in I. This will
+  be [3.89 17.26]. To determine the value of I at this location, we can use
+  the known values closest to this location</p>
+
+  <p align=center style='text-align:center'><img width=500
+  height=150 id="Picture 1" src="affine/images/image024.jpg"></p>
+
+  <p align=center style='text-align:center'><img width=250
+  height=70 id="Picture 1" src="affine/images/image025.jpg"></p>
+  
+
+<p><b>Option 1:</b> Round off the [m, n] and take the pixel value at that
+  location. This is known as the nearest neighbour interpolation method.</p>
+
+<p><b>Option 2:</b> Take the weighted average of the 4 neighbouring
+  pixels. The weights are the distance between the desired location and that
+  of the neighbours. The common form is the bilinear form which is a second
+  order approximation and equivalent to fitting a straight line pairs of
+  neighbouring pixels.</p>
+
+<p><b>Option 3:</b> Take a nonlinear combination of the 16 neighbouring
+  pixels. The standard is to use a third order approximation and fit two
+  piecewise cubic polynomials on to the neighbouring pixels. Hence the
+  interpolation function is called the bicubic interpolation method.</p>

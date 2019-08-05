@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 3.3  (Unix)">
+	<META NAME="CREATED" CONTENT="20111123;16302400">
+	<META NAME="CHANGED" CONTENT="20111123;22560500">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-IN" DIR="LTR">
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><B>Morphological Operations:
+Theory</B></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><B>Set- theory basics</B></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">Let A and B be sets with
+elements a Î A, and b Î B respectively and let x be a vector.</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The <I>Complement</I> of A is
+defined as A<SUP>c</SUP> = {d | dÏA}</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The <I>Difference</I> between
+two sets A and B is defined as D = A-B = {d|d ÎA, d ÏB} = A ÇB<SUP>c
+</SUP></FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The <I>Translation</I> of <I>A
+</I>by <I>x </I>is defined as A<SUB>x</SUB> = {a + x | &quot; a Î A}</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The <I>Reflection</I> of <I>A
+</I>is defined as -B = {-b | &quot; b Î B}</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">In the following, a
+structural element is denoted by set B.</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><B>Dilation </B></FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The Dilation of <I>X </I>by <I>B</I>
+is defined as X 
+<IMG SRC="theory_html_m18552071.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=14 HEIGHT=12 BORDER=0>
+B = {x | -B<SUB>x </SUB>Ç X ¹ f}</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The result of dilation is a<FONT COLOR="#3333cc">
+</FONT><FONT COLOR="#000000">s</FONT>et of all locations x such that
+-B<SUB>x</SUB> has at least 1 pixel within X.</FONT></P>
+<P><IMG SRC="theory_html_37e381f2.png" NAME="Object 7" ALIGN=BOTTOM WIDTH=398 HEIGHT=242 BORDER=0></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The dilation operation
+enlarges /expands the objects in the image. It connects objects
+separated by a distance less the width (window size) of the
+structuring element. Figure 1 shows the output obtained using 3X3
+square structuring element (whose local origin is at the centre of
+the mask). It can be seen that the there is an expansion in the
+object size and the gap between two different connected component
+gets filled. </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">Erosion: </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The Erosion of X by B is
+defined as X 
+<IMG SRC="theory_html_m18552070.png" NAME="Object 2" ALIGN=BOTTOM WIDTH=14 HEIGHT=12 BORDER=0>
+B = {x | B<SUB>x</SUB> Í X} </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The erosion is a set of all
+locations x such that the structuring element B is within (contained
+in) X. </FONT>
+</P>
+<P><IMG SRC="theory_html_m23129e3e.png" NAME="Object 12" ALIGN=BOTTOM WIDTH=402 HEIGHT=253 BORDER=0></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">In contrast to the dilation
+operation, erosion decreases the size of the object. Therefore the
+size of the foreground pixels represented using white pixels shrink
+in size and hole within those regions become larger. Figure 2
+illustrates results of erosion applied on the example image with the
+same structuring element.</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><B>Opening:</B></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">By combining erosion with
+dilation as below</FONT></P>
+<P><IMG SRC="theory_html_m2b496d36.png" NAME="Object 3" ALIGN=BOTTOM WIDTH=115 HEIGHT=24 BORDER=0></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">we define a new operation
+called opening. The opening operation smoothes objects. An alternate
+definition for opening is</FONT></P>
+<P><IMG SRC="theory_html_m777debab.png" NAME="Object 4" ALIGN=BOTTOM WIDTH=154 HEIGHT=26 BORDER=0></P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="theory_html_m7e9b3438.png" NAME="Object 13" ALIGN=BOTTOM WIDTH=376 HEIGHT=214 BORDER=0></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The opening operation
+generally smoothes the boundary of the object, breaks narrow bands
+connecting two large foreground regions and eliminates thin bulges
+appear on the object boundary. Figure 3 illustrates few such cases. </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><B>Closing: </B></FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">By reversing the ordering of
+erosion and dilation operations, a closing operation is defined:</FONT></P>
+<P><IMG SRC="theory_html_m781f428.png" NAME="Object 6" ALIGN=BOTTOM WIDTH=129 HEIGHT=24 BORDER=0></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">Closing smoothes objects by
+adding pixels. All smoothing (both for closing and opening) is in
+relation to the size of the structuring element <I>B</I>. </FONT>
+</P>
+<P><BR><BR>
+</P>
+<P><IMG SRC="theory_html_m594e600f.png" NAME="Object 14" ALIGN=BOTTOM WIDTH=367 HEIGHT=210 BORDER=0></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">The closing operation tends
+to smooth the section of boundaries but as opposed to opening, it
+generally fuses narrow breaks and long thin gulfs, eliminates small
+holes smaller the size of B, and fills gaps in the boundary. Figure 4
+highlights results of closing on an example image illustrating effect
+of closing operation. </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><I><B>Choice of structuring
+element</B></I></FONT> 
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">A key difference between
+linear filtering, which is also a neighbourhood operation, and
+morphological processing is that the mask operation is defined in the
+latter using set theory. The other is the choice of shape. While a
+square shape dominates linear filtering, the <U>shape</U> of the
+structuring element is variable and is usually empirically determined
+based on the application or type of images. Generally, the desirable
+shape of a structuring element depends on the geometric shape of
+interest in the image. For instance, a typical medical image contains
+very few straight lines or objects therefore circular structural
+element is preferred over oriented structuring element. In contrast,
+aerial images usually contain oriented objects such as building,
+roads, etc. therefore oriented or rectangle structuring elements are
+preferred to better deal with such shapes. The <U>size</U> of the
+structuring element is determined based on the size of the feature of
+interest in the image. To preserve larger objects (features) a large
+structure element is preferred while a small one is used to preserve
+the finer structural details in the image. </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><I><B>Extension to gray-scale
+images: </B></I></FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">Morphological operations are
+extendable for gray scale images. In a binary image, the
+morphological operation is based on set theory. Hence, one can view
+the ‘fit’ between B and object X as set intersection. </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">In grey scale images with
+pixel values are drawn from 0, 1….L-1 levels. Hence, morphological
+processing of grey scale images is based on extrema operations. Thus,
+the output pixel value at any point in a gray-scale image is
+determined by taking a maximum for dilation or minimum for erosion of
+the neighborhood pixel values.</FONT></P>
+</BODY>
+</HTML>

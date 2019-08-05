@@ -1,0 +1,32 @@
+* Author: Nihanth
+* Date Created: 15 Apr 2016
+* Environment
+  - OS: Windows 7, Linux
+  - Browsers: Firefox,Chrome
+  - Bandwidth : 100Mbps
+  - Hardware Configuration:8GBRAM , 
+  - Processor:i5
+
+* Objective
+  - To view and take the Quiz of the Point Operations Quiz
+
+* Pre conditions
+  - Refer to first test case [[https://github.com/Virtual-Labs/image-processing-iiith/blob/master/test-cases/integration_test-cases/Point Operations/Point Operations_01_Usability_smk.org][Point Operations_01_Usability_smk.org]]
+
+* Post conditions
+  - Nil
+* Test Steps
+  1. Click on the Assessment link 
+  2. Click on the Quiz link
+  3. It should redirect to the Quiz page
+  4. Do'nt choose the appropriate option and click on the next button
+
+* Expected result
+  1. A dropdown should be displayed on the screen
+  2. Quiz page should be opened
+  3. Content should be present with no distortions and Junk characters
+  4. An error message should be displayed on the screen as to choose the option for the given question
+
+* Review/comments
+
+

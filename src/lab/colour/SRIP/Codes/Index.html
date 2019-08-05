@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>Color Image Processing</title>
+<style>
+body {
+background-color: black;
+color:#c3c3c3;
+}
+#Header {
+background-color: #171717;
+position: relative;
+left: 100px;
+width: 1000px;
+height: 110px;
+background-image: url("images/iiit.png");
+background-repeat: no-repeat;
+background-position: 
+}
+#leftInfo {
+position: absolute;
+width: 300px;
+height: 300px;
+left: 100px;
+}
+
+#buttons1 {
+position: relative;
+top:8px;
+border: solid blue 1px;
+border-radius: 5px;
+}
+#buttons1:hover {
+background-color: #3e8e41;
+}
+#selectImg {
+position: relative;
+top:8px;
+border: solid blue 1px;
+border-radius: 5px;
+}
+#selectImg:hover {
+background-color: #3e8e41;
+}
+
+
+#run {
+position: relative;
+top:8px;
+border: solid blue 1px;
+border-radius: 5px;
+}
+#run:hover {
+background-color: #3e8e41;
+}
+#linear {
+	position:relative;
+	top: -475px;
+	border: solid blue 1px;
+	border-radius: 5px;
+	display: none;
+}
+#linear:hover {
+	background-color: #3e8e41;
+}
+
+#histogram {
+	position:relative;
+	top: -475px;
+	border: solid blue 1px;
+	border-radius: 5px;
+	display: none;
+}
+#histogram:hover {
+	background-color: #3e8e41;
+}
+
+.btn-group2 .button2 { 
+border: solid blue 1px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+cursor: pointer;
+float: left;
+position: relative;
+top: 15px;
+border-radius: 5px;
+}
+
+.btn-group2 .button2:hover {
+background-color: #3e8e41;
+}
+
+#CSParameters {
+position: relative;
+top: 50px;
+width: 300px;
+height: 700px;
+text-align: left;
+border:dashed #c2c2c2 1px
+
+}
+#ioImages {
+position: absolute;
+left: 500px;
+top:150px;
+width: 700px;
+height: 1000px;
+}
+		#imageGrid {
+
+position:relative;
+top: 0px;
+left: 8px;
+width: 400px;
+height: 400px;
+
+}
+.HSI {
+display: none;
+}
+.CMY {
+display: none;
+}
+.RGB {
+display: none;
+}
+.slidecontainer {
+  width: 100%;
+  background-color: transparent;
+  position: relative;
+  top:-30px;
+
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 20px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+</style>
+
+<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
+</head>
+<body>
+<div id = "Header">
+<h1 style = "text-align: center; color: #c2c2c2">Virtual Lab for IMAGE PROCESSING</h1>
+</div>
+
+<div id = "leftInfo">
+
+<h2 style="text-align: center; color:#c2c2c2; ">Colour Image Processing</h2>
+
+<canvas id = "instructionCanvas"></canvas>
+
+<canvas id = "instructionCanvas2"></canvas>
+
+
+<canvas id = "inputCanvas"></canvas>
+
+
+<button id = "selectImg" onclick="showDiv();">Select Image</button>
+<button id = "buttons1" onClick="window.location.reload();">Reset</button>
+<button id = "run" onclick = "hideInst();showInst1(); colorPlanes();">Run</button>
+<div class="btn-group2">
+<button class = "button2" id = "colorSpace">Color Spaces</button>
+<button class = "button2" id = "Processing">Processing</button>
+</div>
+
+<div id = "CSParameters">
+<h4 style = "color: #c2c2c2">Select Color Space:</h4>
+<input type="radio" name="csp" id="hsi"> HSI<br>
+<input type="radio" name="csp" id="cmy"> CMY<br>
+<input type="radio" name="csp" id="rgb">YCbCr<br> 
+</div>
+<div id = "applyParam" style = "display: none; position:relative; top:-300px">
+<p style = "position: relative; top:-230px;">Apply Parameters to : </p>
+<form>
+<input style = "position: relative; top:-230px"; type="checkbox" name="hue" id="hcr"><br>
+<input style = "position: relative; top:-230px"; type="checkbox" name="saturation" id="smg">
+<input style = "position: relative; top:-208px ;left: -24px"; type="checkbox" name="intensity" id="iyb">
+
+
+<span class = "HSI" style = "position: relative; top:-250px; left: -25px"> Hue</span>
+<span class = "HSI" style = "position: relative; top:-230px; left: -55px">Saturation</span>
+<span class = "HSI" style = "position: relative; top:-208px; left: -125px">Intensity</span>
+
+<span class = "CMY" style = "position: relative; top:-250px; left: -25px">Cyan</span>
+<span class = "CMY" style = "position: relative; top:-230px; left: -62px">Magenta</span>
+<span class = "CMY" style = "position: relative; top:-208px; left: -123px">Yellow</span>
+
+<span class = "RGB" style = "position: relative; top:-250px; left: -22px">Red</span>
+<span class = "RGB" style = "position: relative; top:-230px; left: -53px">Green</span>
+<span class = "RGB" style = "position: relative; top:-208px; left: -95px">Blue</span>
+</form>
+</div>
+
+<div id = "lin_hist">
+<button id = "linear">Linear </button>
+<button id = "histogram"> Histogram</button> 
+</div>
+
+<div style = "position: relative; top:-450px; display:none;" id = "linearfunction">
+	f(r) = 
+		<p style =  "font-size: 15px; position: relative; top:-33px; left:40px" id = "eqnslope"></p>
+	<br>
+	Slope (m): <p id = "slope" style =  "font-size: 15px; position: relative; top:-33px; left:75px"></p>
+	<div class="slidecontainer">
+   		<input type="range" value="0" step="0.1" min="-57.3" max="57.3" class = "slider" id = "myRange">
+	</div>
+
+	Offset (c): <p id = "offset" style =  "font-size: 15px; position: relative; top: -33px; left: 75px;"></p>
+	<div class="slidecontainer">
+   		<input type="range" value="0" step="0.1" min="-225" max="225" class = "slider" id = "myOffsetRange">
+	</div>
+
+</div>
+
+</div>
+<div id = "ioHolder" style = "display:none">
+<canvas id = "finalInput"></canvas>
+<img id = "ip" style = "position:relative; width:150px; height: 150px; left: 393px; top: 128px">
+<canvas id = "finalOutput" width = 150 height = 150 style = "position : relative;  top: 450px; left:130px;border: solid blue 3px;"></canvas>
+</div>
+
+<div id = "ioImages" style="display: block">
+<h3>Input Images</h3>
+<div id = "inputHolder" style = "border: solid red 2px ;position: relative width: 600px; height: 200px; display:block">
+<img id = "expandedImg" src="images/Layer-4.jpg" style= " position : relative; top: 15px;left: 30px; width: 150px; height: 150px;  display:block">
+<img id = "redPlane" src="images/Layer-4.jpg" style= "position : relative; top: 15px; left: 60px; width: 150px; height: 150px;  display:none">
+<img id = "greenPlane" src="images/Layer-4.jpg" style= "position : relative; top: 15px;left: 90px; width: 200px; height: 200px;  display:none">
+<img id = "bluePlane" src="images/Layer-4.jpg" style= "position : relative; top: 15px;left: 120px; width: 200px; height: 200px;  display:none">
+<canvas id = "redCanvas" width = 150 height = 150 style= "position : relative;top: -135px; left:200px; ;border: solid white 1px;"  ></canvas>
+<canvas id = "greenCanvas" width = 150 height = 150  style= "position : relative; top: -135px; left:200px;border: solid white 1px;"></canvas>
+<canvas id = "blueCanvas" width = 150 height = 150  style= "position : relative;  top: -135px; left:200px;border: solid white 1px;"></canvas>
+
+</div>
+
+
+
+
+
+<h3> Output Images</h3>
+<div id = "outputHolder" style = "border: solid red 2px ;position: relative width: 600px; height: 150px;display: block">
+<img src="images/Layer-4.jpg" style= " position : relative; top: 15px;left: 30px; width: 120px; height: 120px">
+<img src="images/Layer-4.jpg" style= "position : relative; top: 15px; left: 60px; width: 120px; height: 120px">
+<img src="images/Layer-4.jpg" style= "position : relative; top: 15px;left: 90px; width: 120px; height: 120px">
+
+</div>
+</div>
+<div id = "imageGrid" style = "display: none">
+
+
+<div id = "image1" >
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);" style = "position: relative" src = "Images/img1.jpg" >
+</div>
+
+<div id = "image2" >
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);" style = "position:relative; top: -104px; left: 101px" src = "Mosaicc/img2.jpg" >
+</div>
+
+<div id = "image3">
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);" style =  "position:relative; top: -208px; left: 202px" src = "Mosaicc/img3.jpg" >
+</div>
+
+<div id = "image4" >
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);" style =  "position:relative; top: -211px" src = "Mosaicc/img4.jpg" >
+</div>
+
+<div id = "image5" >
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);" style =  "position:relative; top: -314px; left:101px" src = "Mosaicc/img5.jpg" >
+</div>
+
+<div id = "image6" >
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);" style =  "position:relative; top: -418px; left:202px" src = "Mosaicc/img6.jpg" >
+</div>
+
+<div id = "image7" >
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);" style =  "position:relative; top: -421px; " src = "Mosaicc/img7.jpg" >
+</div>
+
+<div id = "image8" >
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);"style =  "position:relative; top: -524px; left:101px" src = "Mosaicc/img8.jpg" >
+</div>
+
+<div id = "image9" >
+<img width = 100 height = 100 onclick="hideIg();myFunction(this);"style =  "position:relative; top: -628px; left:201px" src = "Mosaicc/img9.jpg" >
+</div>
+
+
+</div>
+
+<script src = "myScript.js"></script>
+
+
+
+</body>
+</html>

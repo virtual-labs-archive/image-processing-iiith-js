@@ -1,0 +1,34 @@
+* Author: Suman
+* Date Created: 15 Apr 2016
+* Environment
+  - OS: Windows 7, Linux
+  - Browsers: Firefox,Chrome
+  - Bandwidth : 100Mbps
+  - Hardware Configuration:8GBRAM , 
+  - Processor:i5
+
+* Objective
+  - To view and take the Quiz of the Affine Transformation Quiz
+
+* Pre conditions
+  - Refer to first test case [[https://github.com/Virtual-Labs/image-processing-iiith/blob/master/test-cases/integration_test-cases/Affine Transformation/Affine Transformation_01_Usability_smk.org][Affine Transformation_01_Usability_smk.org]]
+
+* Post conditions
+  - Nil
+* Test Steps
+  1. Click on the Assessment link 
+  2. Click on the Quiz link
+  3. It should redirect to the Quiz page
+  4. Choose the appropriate option and click on the next button
+  5. Repeat 4th step till the last question and click on the next button
+  6. Click on the try again button and repeat 4&5 steps
+
+* Expected result
+  1. A dropdown should be displayed on the screen
+  2. Quiz page should be opened
+  3. Content should be present with no distortions and Junk characters
+  4. The given options should get validated with the backend database and the result should be displayed on the screen
+
+* Review/comments
+
+

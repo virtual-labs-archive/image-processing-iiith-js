@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 3.3  (Unix)">
+	<META NAME="CREATED" CONTENT="20111123;15580200">
+	<META NAME="CHANGED" CONTENT="20111123;17061200">
+</HEAD>
+<BODY LANG="en-IN" DIR="LTR">
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><B>Image Processing Test
+Bench: Procedure</B></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><FONT COLOR="#000000">In
+general, a good strategy to solve a given problem is using a ‘divide
+and conquer’ approach. Here the problem is broken down into
+sub-problems and solved. In this experiment, you are provided with an
+environment which will allow you to build a solution to a problem by
+stringing together the solution to several sub-problems. Thus, the
+system you build is a cascade of different modules.</FONT></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">This test bench is meant to
+help you experiment and learn how algorithms are built. </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><FONT COLOR="#000000"><I>Part1</I></FONT><FONT COLOR="#000000">:
+ For a start, take your select an image from the mosaic and try
+applying different operations on it in a serial fashion. </FONT></FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><FONT COLOR="#000000"><U>Example</U></FONT><FONT COLOR="#000000">:
+Apply contrast stretching first, save the image and use that as input
+image for the next steps which could be filtering (neighbourhood
+processing) followed by segmentation by thresholding.</FONT></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">To use the output image of a
+processing step as input image for the next step, click on the button
+“Return to piping”. This will prompt you with “Retain changes?”
+Click ‘OK”. </FONT>
+</P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">If you have a long sequence
+of steps first understand the effect of swapping the order of steps
+on the processed result.</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><FONT COLOR="#000000"><I>Part
+2</I></FONT><FONT COLOR="#000000">: Now try defining a specific task
+for yourself and solve it by designing an algorithm for the same on
+paper and implementing it using the test bench. Some sample problems
+are given in the assessment section.</FONT></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><B>Assessment</B></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><FONT COLOR="#000000">1.
+Extract image regions belong to bushes from the image given in grid
+(row:3, column 3).</FONT></FONT></P>
+<P><FONT COLOR="#000000"> <FONT SIZE=2 STYLE="font-size: 11pt">2.
+Extract image regions belong to leaves of the flower given in (row:2,
+column:3). Hint: Try point operations to make leaf brightness uniform
+followed by segmentation.</FONT></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><FONT COLOR="#000000">3.
+Extract words written in all non-English text in the image given in
+(row: 1, column:1)</FONT></FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt">4. Extract tiger whiskers
+from the image given in (row:3, column:3)</FONT></P>
+<P><FONT SIZE=2 STYLE="font-size: 11pt"><FONT COLOR="#000000"><SPAN STYLE="background: #ffffff">5.
+Extract Taj Mahal monument from the image given in (row:3, column:2)</SPAN></FONT></FONT></P>
+</BODY>
+</HTML>

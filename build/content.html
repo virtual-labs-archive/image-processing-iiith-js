@@ -1,0 +1,325 @@
+<!-- This file needs to be edited by the lab developer to suit
+their lab rquirements. -->
+
+<!-- Add class="default" to include any element as it is
+specified in default.html. 
+Do not include class="default" to the elements that you want to
+edit -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Digital Image Processing Lab</title>
+</head>
+
+<body>
+
+<div id="lab"> <!-- The Lab Document Container-->
+  
+  <!-- The lab Header contains the logo and the name of the lab, 
+  usually displayed on the top of the page-->
+
+  <header id="lab-header">
+    
+    <div id="lab-header-logo" class="logo">
+      <!-- Enclose the logo image of your lab or write it in 
+      text-->
+      <img src="images/logo.jpg" />
+    </div>
+
+    <div id="lab-header-heading" class="heading">
+    <!-- Write the name of your lab and link it to the home page
+    of your lab. -->
+      <a href="index.php">Digital Image Processing Lab</a>	
+    </div>
+
+    <!-- Add any additional element or link you want to add to 
+    the lab header, For example : Help (Enclosing them with 
+    suitable div is recommended)-->
+  
+  </header>
+
+
+  <!-- The lab article is the main content area where all the 
+  experiment content sits-->
+  <article id="lab-article">
+
+
+    <!-- The lab article has an header, optional navigational 
+    menu, number of sections, an optional sidebar and a closing 
+    footer-->
+    <header id="lab-article-header">
+      
+      <!-- You can add a welcome message or title of the 
+      experiment enclosed in h1 tag here -->
+      <div id="lab-article-heading" class="heading">
+        Welcome to Digital Image Processing Lab!
+      </div>
+
+      <!-- Add any additional element if required with proper 
+      enclosing-->
+    </header>
+
+
+    <!-- Navigation menu is useful to organize the view of 
+    multiple sections inside the article-->
+    <nav id="lab-article-navigation" class="default">
+      
+      <!-- The menu will be dynamically generated to contain the 
+      headings of your sections or instead write the menu items 
+      of your choice individually enclosed in <li> tag as shown 
+      below-->
+
+    </nav>
+
+    
+    <!-- All the sections of your lab or experiment can be 
+    enclosed together with a div element as shown below-->
+    <div id="lab-article-sections">
+			
+      <!-- First section of the article-->
+      <section id="lab-article-section-1">
+        <div id="lab-article-section-1-icon" class="icon">
+          <!-- Enclose the icon image for the section. -->
+	  <img src="images/theory.jpg" />
+	</div>
+
+
+        <!-- The heading for the section can be enclosed in a 
+        div tag. -->
+	<div id="lab-article-section-1-heading" class="heading">
+	Introduction
+	</div>
+				
+	<!-- Write the section content inside a paragraph 
+        element, You can also include images with <img> tag -->
+	<div id="lab-article-section-1-content" class="content">
+	  <p>
+Welcome to the digital image processing virtual lab. The primary objective of this virtual lab is to supplement an undergraduate level course on image processing and enable students to understand the subject better. The lab consists of a diverse set of experiments with objective, theory, assessment, references and interactive examples which are designed to improve the clarity in understanding of the basic concepts. It is important that the student goes through the objectives and the underlying theory before carrying out the experiments to get maximum benefit. The lab is intended to help in clarifying concepts. It is not intented for learning how to write code to do image processing
+	  </p>
+
+<p>
+The primary references (textbook) for the topics covered by the experiments are: <br>
+1. Digital Image Processing (3rd Edition)</i>, by Rafael C. Gonzalez and Richard E. Woods. <br>
+2. Fundamentals of digital image processing,</i> by Anil K. Jain.
+</p>
+
+<p>Before you start any of the experiments, make sure you read the notes below. <br>
+1. Each link on the right takes you to a set of experiments that is related to a specific topic. The experiments are designed to expose you to certain concepts. You are encouraged to carry out variants of the suggested experiments and learn from them.<br>
+2. Please make sure that you read the background material and experiment procedure before carrying out the experiments. Trying out the experiments before reading does not hurt, but having the background will help you understand the results better. <br>
+</p>
+<br>
+	</div>
+	
+      </section>
+		
+
+      <!-- Second section of the article-->
+      <section id="lab-article-section-2">
+        
+        <div id="lab-article-section-2-icon" class="icon">
+          <!-- Enclose the icon image for the section. -->
+	  <img src="images/simulation.jpg" />
+	</div>
+
+
+        <!-- The heading for the section can be enclosed in a 
+        div tag and shown with a <h2> tag -->
+	<div id="lab-article-section-2-heading" class="heading">
+	  List of experiments
+	</div>
+				
+	<!-- Write the section content inside a paragraph 
+        element, You can also include images with <img> tag -->
+        <div id="lab-article-section-2-content" class="content">
+	  <ul id="list-of-experiments">
+	  
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=diff">Distance and Connectivity</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=arith">Image Arithmetic</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=affine">Affine Transformation</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=point">Point Operations</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=neigh">Neighbourhood Operations</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=histo">Image Histogram</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=fourier">Fourier Transform</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=colour">Color Image Processing</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=morph">Morphological Operations</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=segment">Image Segmentation</a> 
+	    </li>
+            <li> 
+	      <!--Link and name of the experiment 1 -->
+	      <a href="objective.php?exp=piping">Image Processing Test Bench</a> 
+	    </li>
+
+	  </ul>
+	</div>
+	
+      </section>
+
+
+	 <!-- Second section of the article-->
+      <section id="lab-article-section-3">
+        
+        <div id="lab-article-section-3-icon" class="icon">
+          <!-- Enclose the icon image for the section. -->
+	  <img src="images/introduction.jpg" />
+	</div>
+
+
+        <!-- The heading for the section can be enclosed in a 
+        div tag and shown with a <h2> tag -->
+	<div id="lab-article-section-3-heading" class="heading">
+	 Target Audience
+	</div>
+				
+	<!-- Write the section content inside a paragraph 
+        element, You can also include images with <img> tag -->
+        <div id="lab-article-section-3-content" class="content">
+	  <p>
+The experiments provides an introduction to image processing to students at third year undergraduate or first year postgradute level.
+
+
+	  </p>
+	</div>
+	
+      </section>
+
+	<section id="lab-article-section-4">
+        
+        <div id="lab-article-section-4-icon" class="icon">
+          <!-- Enclose the icon image for the section. -->
+	  <img src="images/readings.jpg" />
+	</div>
+
+
+        <!-- The heading for the section can be enclosed in a 
+        div tag and shown with a <h2> tag -->
+	<div id="lab-article-section-4-heading" class="heading">
+	 Courses Aligned
+	</div>
+				
+	<!-- Write the section content inside a paragraph 
+        element, You can also include images with <img> tag -->
+        <div id="lab-article-section-4-content" class="content">
+	  <p>
+This virtual lab is aligned with an introductory course on Image processing, which is usually offered as a first level elective in many curricula.
+
+	  </p>
+	</div>
+	
+      </section>
+
+	<section id="lab-article-section-5">
+        
+        <div id="lab-article-section-5-icon" class="icon">
+          <!-- Enclose the icon image for the section. -->
+	  <img src="images/procedure.jpg" />
+	</div>
+
+
+        <!-- The heading for the section can be enclosed in a 
+        div tag and shown with a <h2> tag -->
+	<div id="lab-article-section-5-heading" class="heading">
+	 Prerequisite S/W
+	</div>
+				
+	<!-- Write the section content inside a paragraph 
+        element, You can also include images with <img> tag -->
+        <div id="lab-article-section-5-content" class="content">
+	  <p>
+	   <ul> 
+		<li>Linear Algebra.</li>
+		<li>Signals and Systems</li>
+		<li> Computer Programming</li>
+	   </ul>
+	  </p>
+	</div>
+	
+      </section>
+	<section id="lab-article-section-6">
+       
+	  <div id="lab-article-section-6-icon" class="icon">
+			 <!-- Enclose the icon image for the section. -->
+		 <img src="images/manual.jpg" />
+		</div>
+
+		<!-- The heading for the section can be enclosed in a div tag and shown with a <h2> tag -->
+
+		<div id="lab-article-section-6-heading" class="heading">
+		Feedback
+		</div>
+
+		<!-- Write the section content inside a paragraph element, You can also include images with <img> tag -->
+		<div id="lab-article-section-6-content" class="content">
+		 <p>
+			  <ul>
+				<li><a href="http://virtual-labs.ac.in/feedback/?lab=cse19" >Feedback</a></li>
+
+			  </ul>
+		 </p>
+	  </div>
+
+     </section>
+      </div>	
+
+      <!-- An article can have a sidebar that contain related 
+      links and additional material (it is optional at this 
+      moment)-->
+      <aside id="lab-article-sidebar" class="default">
+	<!-- put the content that you want to appear in the 
+        sidebar-->	
+      </aside>
+		
+      <!-- Article footer can display related content and 
+      additional links -->						
+      <footer id="lab-article-footer" class="default">
+	<!-- Put the content that you want to appear here-->
+      </footer>
+
+    </article>
+	
+  <!-- Links to other labs, about us page can be kept the lab 
+  footer-->
+  <footer id="lab-footer" class="footer">
+    <!-- Put the content here-->
+<center>
+<br>
+<br>
+<a href="http://virtual-labs.ac.in/nmeict/" >Sponsored by MHRD (NME-ICT) </a> | <a href="http://virtual-labs.ac.in/licensing/" target="_blank"> Licensing Terms </a>
+<br>
+<br>
+</center>
+  </footer>
+
+</div>
+</body>
+</html>
