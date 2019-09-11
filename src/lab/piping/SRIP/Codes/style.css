@@ -1,0 +1,125 @@
+#ContentBox {
+    height: 100vh;
+    font-family: "Titillium Web";
+    background-color: #171717;
+    color: #c2c2c2;
+}
+
+#topbar {
+    position: relative;
+    background-color: #3a3a3a;
+    height: 110px;
+    width: 60%;
+    margin: 0 auto;
+    color: #c2c2c2;
+}
+
+#iiitLogo {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#heading {
+    text-align: center;
+    padding-top: 10px;
+    color: #c2c2c2;
+    font-family: Titillium Web;
+    font-size: 0.8em;
+    margin-top: 5px;
+    padding-top: 1px;
+    padding-left: 50px;
+}
+
+#subHeading {
+    margin: auto;
+    text-align: center;
+}
+
+.instructionBox {
+    width: 28vw;
+    border-style: dashed;
+    margin: auto;
+}
+
+#controlPanel {
+    margin: 0 auto;
+    margin-top: 2em;
+    text-align: center;
+}
+
+.radioControlBox {
+    text-align: left;
+    transform: translateX(3em);
+}
+
+/* #startControls {
+    display: none;
+} */
+
+#affineControls {
+    display: none;
+}
+
+#pointControls {
+    display: none;
+}
+
+#morphControls {
+    display: none;
+}
+
+#histogramControls {
+    display: none;
+}
+
+#neighbourhoodControls {
+    display: none;
+}
+
+#fourierControls {
+    display: none;
+}
+
+#segmentationControls {
+    display: none;
+}
+
+.custom-range {
+    width: 100%;
+    height: calc(1rem + 0.4rem);
+    padding: 0;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#inputImCanvasDiv,
+#outputImCanvasDiv {
+    margin: 0 auto;
+}
+
+#inputImCanvas,
+#outputImCanvas {
+    width: 23vw;
+    height: 23vw;
+    border-style: solid;
+    transform: translateX(15%) translateY(12%);
+}
+
+#pipelineDiv {
+    height: 20vh;
+    margin: 0 auto;
+}
+
+#MosaicImgModal .modal-header {
+    padding: 0.7rem;
+}
+
+#mosaicSelectImage {
+    width: 86vh;
+    height: 86vh;
+    margin: auto;
+    display: block;
+}

@@ -1,0 +1,175 @@
+.body{
+	background-color: #171717;
+    margin: auto;
+   
+}
+.body {
+    font-family: Titillium Web;
+}
+
+.item {
+    width: 100px;
+    float: left;
+    height: 100px;
+    
+    
+}
+.item img {
+   
+}
+button {
+    font-size: 18px;
+}
+.img_grid{
+   
+    margin-left: -5px;
+    width:300px;
+    height: 300px;
+}
+#iiit{
+	position: absolute;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+#heading{
+	text-align: center;
+	padding-top: 10px;
+	color: #C2C2C2;
+    font-family: Titillium Web;
+	font-size: .8em;
+    margin-top: 5px;
+    padding-top: 1px;
+    padding-left: 50px;    
+}
+#sub_heading{
+    margin-top: -15px;
+}
+#topbar{
+    position: relative;
+    background-color: #3a3a3a;
+    height: 110px;
+    width: 800px;
+    margin-left:150px ;
+    color: #C2C2C2;
+    
+}
+#sel{
+    color: #c2c2c2;
+    font-family: Titillium Web ; 
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    padding:5px;
+    font-weight: bold;
+    font-size: 17px;
+    width: 250px;
+}
+#Select{
+    margin: 20px;
+    width: 320px;
+    height: 390px;
+    border: 1px solid #c2c2c2;
+    border-radius: 20px;
+    
+    
+    
+}
+#images{
+   margin: auto; 
+}
+#Run{
+    margin: 5px 105px 5px 0px;
+    padding: 5px 30px;
+    font-family: Titillium Web ; 
+    border-radius: 10px;
+    
+}
+#reset{
+    padding: 5px 25px;
+    font-family: Titillium Web ; 
+    border-radius: 10px;
+}
+.item:hover{
+    
+    opacity: 0.6;
+}
+    
+
+#Preview{
+    color: #c2c2c2;
+    margin: 20px;
+    margin-top: 35px;
+    height: 330px;
+    width: 330px;
+}
+#table{
+    margin: auto;
+}
+#SecForm{
+    text-align: center;
+    
+}
+#input_image{
+    border: 4px solid yellow;
+    height: 309px;
+    width: 309px;
+}
+.Parameters{
+
+    color: #c2c2c2;
+    margin: 20px;
+    margin-top: 0px;
+    width: 330px !important;
+    height: 260px;
+    border: 1px solid;
+    border-radius: 20px;
+    font-family: Titillium Web ;    
+}
+h3{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+#Output{
+    margin: 20px;
+    margin-top: 35px;
+    height: 330px;
+    width: 330px;
+    color: #c2c2c2;
+}
+#output_image{
+    border: 4px solid blue;
+    height: 307px;
+    width: 307px;
+}
+#Run{
+    margin-top: 5px;
+}
+#placeholder{
+    
+    width:312px;height: 312px;
+    border: solid grey 1px;
+    padding: 5px;
+    margin: 0px 0px 10px 30px;
+}
+.label{
+    text-align: right;
+    margin-top: 2px
+    
+}
+.Experiment{
+    width: 1100px !important;
+    margin: auto;
+    
+    padding: auto;
+    
+}
+.sel_text{
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-right: 10px
+}
+.sec_text{
+    font-weight: bold;
+}
+

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required Meta Tags -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Image Processing Test Bench Experiment</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Font from Google -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Bootstrap Offline -->
+        <!-- <link
+            rel="stylesheet"
+            href="../Libraries/bootstrap-4.3.1-dist/css/bootstrap.min.css"
+        /> -->
+
+        <!-- Bootstrap CDN -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+        />
+
+        <!-- imgAreaSelect -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="../Libraries/jquery.imgareaselect-0.9.10/css/imgareaselect-animated.css"
+        />
+        <script
+            type="text/javascript"
+            src="../Libraries/jquery.imgareaselect-0.9.10/scripts/jquery.min.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="../Libraries/jquery.imgareaselect-0.9.10/scripts/jquery.imgareaselect.pack.js"
+        ></script>
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen"
+            href="style.css"
+        />
+    </head>
+
+    <body>
+        <div id="ContentBox" class="container-fluid">
+            <!--Heading-->
+            <div id="topbar">
+                <div id="iiitLogo">
+                    <img src="res/iiit.png" width="100" height="70" />
+                </div>
+                <div id="heading">
+                    <h1>Virtual Lab for Image Processing</h1>
+                </div>
+                <div id="subHeading"><h3>Image Processing Test Bench</h3></div>
+            </div>
+            <div class="row">
+                <div id="controlPanel" class="col-4">
+                    <h3>Image Processing Test Bench</h3>
+                    <br />
+                    <div id="startControls" class="controlDiv">
+                        <div class="instructionBox">
+                            <p id="startInstructionText" class="text-center">
+                                Start the experiment by clicking on "Select
+                                Image" and selecting an image from the mosaic
+                            </p>
+                        </div>
+                        <br />
+                        <div class="btn-group">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                data-toggle="modal"
+                                data-modal="#MosaicImgModal"
+                                id="selectImgButton"
+                                onclick="selectImage()"
+                            >
+                                Select Image
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-primary disabled"
+                                id="resetButton"
+                                onclick="reset()"
+                                disabled
+                            >
+                                Reset
+                            </button>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="radioControlBox">
+                            <div class="radio">
+                                <input
+                                    type="radio"
+                                    name="operation"
+                                    id="affineRadio"
+                                    onclick="showAffineView()"
+                                />
+                                <label for="affineRadio">Affine</label>
+                            </div>
+                            <div class="radio">
+                                <input
+                                    type="radio"
+                                    name="operation"
+                                    id="pointRadio"
+                                    onclick="showPointView()"
+                                />
+                                <label for="pointRadio">Point</label>
+                            </div>
+                            <div class="radio">
+                                <input
+                                    type="radio"
+                                    name="operation"
+                                    id="histogramRadio"
+                                    onclick="showHistogramView()"
+                                />
+                                <label for="histogramRadio">Histogram</label>
+                            </div>
+                            <div class="radio">
+                                <input
+                                    type="radio"
+                                    name="operation"
+                                    id="neighbourRadio"
+                                    onclick="showNeighbourhoodView()"
+                                />
+                                <label for="neighbourRadio"
+                                    >Neighbourhood</label
+                                >
+                            </div>
+                            <div class="radio">
+                                <input
+                                    type="radio"
+                                    name="operation"
+                                    id="fourierRadio"
+                                    onclick="showFourierView()"
+                                />
+                                <label for="fourierRadio"
+                                    >Fourier Transform</label
+                                >
+                            </div>
+                            <div class="radio">
+                                <input
+                                    type="radio"
+                                    name="operation"
+                                    id="morphRadio"
+                                    onclick="showMorphView()"
+                                />
+                                <label for="morphRadio">Morphological</label>
+                            </div>
+                            <div class="radio">
+                                <input
+                                    type="radio"
+                                    name="operation"
+                                    id="segmentRadio"
+                                    onclick="showSegmentationView()"
+                                />
+                                <label for="segmentRadio">Segmentation</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="affineControls" class="controlDiv">
+                        <div class="instructionBox">
+                            <p id="affineInstructionText" class="text-center">
+                                Select the required transform and press Run.
+                                Press Back to cancel operation.
+                            </p>
+                        </div>
+                        <div class="radioControlBox">
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="affineTransform"
+                                    id="translateRadio"
+                                />
+                                <label for="translateRadio">Translate</label>
+                                <div>
+                                    <div>
+                                        <label for="translateRangeX"
+                                            >X Translation</label
+                                        >
+                                        <input
+                                            type="range"
+                                            class="custom-range float-right"
+                                            min="-300"
+                                            max="300"
+                                            step="1"
+                                            value="0"
+                                            class="slider"
+                                            id="translateRangeX"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label for="translateRangeY"
+                                            >Y Translation</label
+                                        >
+                                        <input
+                                            type="range"
+                                            class="custom-range float-right"
+                                            min="-300"
+                                            max="300"
+                                            step="1"
+                                            value="0"
+                                            class="slider"
+                                            id="translateRangeY"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="affineTransform"
+                                    id="rotateRadio"
+                                />
+                                <label for="rotateRadio">Rotate</label>
+                                <div>
+                                    <label for="rotateTransformAngle"
+                                        >Rotate Angle</label
+                                    >
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        min="-180"
+                                        max="180"
+                                        step="1"
+                                        name="affineTransform"
+                                        id="rotateTransformAngle"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="affineTransform"
+                                    id="scaleRadio"
+                                />
+                                <label for="scaleRadio">Scale</label>
+                                <label for=""></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pointControls" class="controlDiv">
+                        <div class="btn-group">
+                            <button class="btn btn-primary" type="button" onclick="">Linear</button>
+                            <button class="btn btn-primary">Non-Linear</button>
+                            <button class="btn btn-primary">Clipping</button>
+                            <button class="btn btn-primary">Window</button>
+                        </div>
+                        <div class="controlBox">
+                            <div id="linearControls">
+                                <div>
+                                    <label for="slopeLinearPointControl">
+                                        Slope
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="slope"
+                                        min="-57.3"
+                                        max="57.3"
+                                        id="slopeLinearPointControl"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="offsetLinearPointControl">
+                                        Offset
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="offset"
+                                        min="-255"
+                                        max="255"
+                                        id="offsetLinearPointControl"
+                                    />
+                                </div>
+                            </div>
+                            <div id="nonLinearControls">
+                                <div>
+                                    <label for="slopeNonLinearPointControl">
+                                        Slope
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="slope"
+                                        id="slopeNonLinearPointControl"
+                                    />
+                                </div>
+                            </div>
+                            <div id="ClippingControls">
+                                <div>
+                                    <label for="windowStartClippingPointControl">
+                                        Window Start
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="windowStart"
+                                        min="0"
+                                        max="255"
+                                        id="windowStartClippingPointControl"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="windowEndClippingPointControl">
+                                        Window End
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="windowEnd"
+                                        min="0"
+                                        max="255"
+                                        id="windowEndClippingPointControl"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="slopeClippingPointControl">
+                                        Slope
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="slope"
+                                        min="0"
+                                        max="1"
+                                        step="0.01"
+                                        id="slopeClippingPointControl"
+                                    />
+                                </div>
+                            </div>
+                            <div id="WindowControls">
+                                <div>
+                                    <label for="windowStartWindowPointControl">
+                                        Window Start
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="windowStart"
+                                        min="0"
+                                        max="255"
+                                        id="windowStartWindowPointControl"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="windowEndWindowPointControl">
+                                        Window End
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="windowEnd"
+                                        min="0"
+                                        max="255"
+                                        id="windowEndWindowPointControl"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="slopeWindowPointControl">
+                                        Slope
+                                    </label>
+                                    <input
+                                        type="range"
+                                        class="custom-range float-right"
+                                        name="slope"
+                                        min="0"
+                                        max="1"
+                                        step="0.01"
+                                        id="slopeWindowPointControl"
+                                    />
+                                </div>
+                            </div>
+                            <!-- <input
+                                type="range"
+                                class="custom-range"
+                                name=""
+                                id=""
+                            /> -->
+                        </div>
+                    </div>
+                    <div id="morphControls" class="controlDiv">
+                        <div class="controlBox">
+                            <div>
+                                Select Operation:
+                                <br />
+                                <input
+                                    type="radio"
+                                    name="dilation"
+                                    id="dilationMorphControl"
+                                />
+                                <label for="dilationMorphControl"
+                                    >Dilation</label
+                                >
+                                <input
+                                    type="radio"
+                                    name="erosion"
+                                    id="erosionMorphControl"
+                                />
+                                <label for="erosionMorphControl">Erosion</label>
+                                <input
+                                    type="radio"
+                                    name="closing"
+                                    id="closingMorphControl"
+                                />
+                                <label for="closingMorphControl">Closing</label>
+                                <input
+                                    type="radio"
+                                    name="opening"
+                                    id="openingMorphControl"
+                                />
+                                <label for="openingMorphControl">Opening</label>
+                            </div>
+                            <div>
+                                Structuring Element Properties:
+                                <div class="row">
+                                    <div class="col w-50">
+                                        Shape
+                                        <input
+                                            type="radio"
+                                            name="disc"
+                                            id="discStrElementMorphControl"
+                                        />
+                                        <label for="discStrElementMorphControl"
+                                            >Disc</label
+                                        >
+                                        <input
+                                            type="radio"
+                                            name="square"
+                                            id="squareStrElementMorphControl"
+                                        />
+                                        <label
+                                            for="squareStrElementMorphControl"
+                                            >Square</label
+                                        >
+                                        <input
+                                            type="radio"
+                                            name="line"
+                                            id="lineStrElementMorphControl"
+                                        />
+                                        <label for="lineStrElementMorphControl"
+                                            >Line</label
+                                        >
+                                        <!-- <div id="lineStrElementParamMorphControl">
+                                            <b>Angle from horizontal</b><br>
+                                            <input type="radio" name="angle" value="0"> 0 degrees <br>
+                                            <input type="radio" name="angle" value="30" checked="">30 degrees <br>
+                                            <input type="radio" name="angle" value="60"> 60 degrees <br>
+                                            <input type="radio" name="angle" value="90"> 90 degrees <br>
+                                        </div> -->
+                                    </div>
+                                    <div class="col w-50">
+                                        <input type="radio" name="" id="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="histogramControls" class="controlDiv">
+                        <div class="controlBox">
+                            <b>Processing Options:</b>
+                            <input
+                                type="radio"
+                                name="globalEqualisation"
+                                id="globalHistEqualisationHistControls"
+                            />
+                            <label for="globalHistEqualisationHistControls"
+                                >Global Histogram Equalisation</label
+                            >
+                            <input
+                                type="radio"
+                                name="adaptiveEqualisation"
+                                id="adaptiveHistEqualisationHistControls"
+                            />
+                            <label for="adaptiveHistEqualisationHistControls"
+                                >Adaptive Histogram Equalisation</label
+                            >
+                            <input
+                                type="radio"
+                                name="histFilter"
+                                id="FilterHistogramHistControls"
+                            />
+                            <label for="FilterHistogramHistControls"
+                                >Filter Histogram</label
+                            >
+                        </div>
+                    </div>
+                    <div id="neighbourhoodControls" class="controlDiv">
+                        <div class="controlBox">
+                            <div class="row">
+                                <div class="col">
+                                    <b>Linear Filtering</b>
+                                    <input
+                                        type="radio"
+                                        name="filterType"
+                                        value="strAvg"
+                                        id="strAvgLinFilterNeighControls"
+                                    />
+                                    <label for="strAvgLinFilterNeighControls"
+                                        >Straight Average</label
+                                    >
+                                    <input
+                                        type="radio"
+                                        name="filterType"
+                                        value="triangular"
+                                        id="triangularLinFilterNeighControls"
+                                    />
+                                    <label
+                                        for="triangularLinFilterNeighControls"
+                                        >Triangular Filter</label
+                                    >
+                                    <input
+                                        type="radio"
+                                        name="filterType"
+                                        value="gaussAvg"
+                                        id="GaussianLinFilterNeighControls"
+                                    />
+                                    <label for="GaussianLinFilterNeighControls"
+                                        >Gaussian Filter</label
+                                    >
+                                </div>
+                                <div class="col">
+                                    <b>Size of Neig'hood</b>
+                                    <input
+                                        type="radio"
+                                        name="filterSize"
+                                        id="3LinFilterSizeNeighControls"
+                                        value="3"
+                                    />
+                                    <label for="3LinFilterSizeNeighControls"
+                                        >3 * 3</label
+                                    >
+                                    <input
+                                        type="radio"
+                                        name="filterSize"
+                                        id="5LinFilterSizeNeighControls"
+                                        value="5"
+                                    />
+                                    <label for="5LinFilterSizeNeighControls"
+                                        >5 * 5</label
+                                    >
+                                    <input
+                                        type="radio"
+                                        name="filterSize"
+                                        id="7LinFilterSizeNeighControls"
+                                        value="7"
+                                    />
+                                    <label for="7LinFilterSizeNeighControls"
+                                        >7 * 7</label
+                                    >
+                                </div>
+                            </div>
+                            <div>
+                                <b>Non-Linear Operations</b>
+                                <input
+                                    type="radio"
+                                    name="filterType"
+                                    id="medianNonLinFilterNeighControls"
+                                    value="median"
+                                />
+                                <label for="medianNonLinFilterNeighControls"
+                                    >Median</label
+                                >
+                                <input
+                                    type="radio"
+                                    name="filterType"
+                                    id="unsharpNonLinFilterNeighControls"
+                                    value="unsharp"
+                                />
+                                <label for="unsharpNonLinFilterNeighControls"
+                                    >Unsharp</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div id="fourierControls" class="controlDiv">
+                        <div class="controlBox">
+                            <b>Inverse Fourier Transform with Bit Masking</b>
+                            <label for="thetaFourierControls">θ</label>
+                            <input
+                                type="range"
+                                name="theta"
+                                id="thetaFourierControls"
+                            />
+                            <label for="radiusFourierControls">r</label>
+                            <input
+                                type="range"
+                                name="radius"
+                                id="radiusFourierControls"
+                            />
+                            <label for="dThetaFourierControls">Δθ</label>
+                            <input
+                                type="range"
+                                name="dtheta"
+                                id="dThetaFourierControls"
+                            />
+                            <label for="dRadiusFourierControls">Δr</label>
+                            <input
+                                type="range"
+                                name="dradius"
+                                id="dRadiusFourierControls"
+                            />
+                        </div>
+                    </div>
+                    <div id="segmentationControls" class="controlDiv">
+                        <div class="controlBox">
+                            <input
+                                type="radio"
+                                name="segmentationType"
+                                id="histBasedSegmentation"
+                            />
+                            <label for="histBasedSegmentation"
+                                ><b>Histogram Based Segmentation</b></label
+                            >
+                            <div id="histBasedSegmentationDiv">
+                                <i>Manual Thresholding</i>
+                                <input
+                                    type="radio"
+                                    name="thresholding"
+                                    id="singleThresholdSegmentControls"
+                                />
+                                <label for="singleThresholdSegmentControls"
+                                    >Single Thresholding</label
+                                >
+                                <input
+                                    type="radio"
+                                    name="thresholding"
+                                    id="doubleThresholdSegmentControls"
+                                />
+                                <label for="doubleThresholdSegmentControls"
+                                    >Double Thresholding</label
+                                >
+                                <i>Automatic Thresholding</i>
+                                <input
+                                    type="radio"
+                                    name="thresholding"
+                                    id="autoThresholdSegmentControls"
+                                />
+                                <label for="autoThresholdSegmentControls"
+                                    >Automatic Thresholding(Otsu)</label
+                                >
+                            </div>
+                            <input
+                                type="radio"
+                                name="segmentationType"
+                                id="regionGrowingSegmentation"
+                            />
+                            <label for="regionGrowingSegmentation"
+                                ><b>Region Growing</b></label
+                            >
+                            <div id="regionGrowing">
+                                <input
+                                    type="radio"
+                                    name="regionGrowingBasis"
+                                    id="meanBasedRegionSegmentControls"
+                                    value="mean"
+                                />
+                                <label for="meanBasedRegionSegmentControls"
+                                    >Mean Based</label
+                                >
+                                <input
+                                    type="radio"
+                                    name="regionGrowingBasis"
+                                    id="varianceBasedRegionSegmentControls"
+                                    value="variance"
+                                />
+                                <label for="varianceBasedRegionSegmentControls"
+                                    >Variance Based</label
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="runButton"
+                        >
+                            Run
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            id="backButton"
+                            onclick="showStartView()"
+                        >
+                            Back
+                        </button>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col" id="inputImCanvasDiv">
+                            <canvas id="inputImCanvas"></canvas>
+                        </div>
+                        <div class="col" id="outputImCanvasDiv">
+                            <canvas id="outputImCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-7 border" id="pipelineDiv">
+                    <label for="pipelineRange">Pipeline</label>
+                    <input
+                        type="range"
+                        class="custom-range"
+                        name="pipeline"
+                        min="0"
+                        max="0"
+                        id="pipelineRange"
+                    />
+                </div>
+            </div>
+
+            <!-- <div class="d-none" id="mosaic-diplay">
+        </div> -->
+        </div>
+
+        <!-- Image select modal -->
+        <div
+            id="MosaicImgModal"
+            class="modal fade"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="imageSelectModal"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="imageSelectModalLabel">
+                            Image Select
+                        </h4>
+                        <button class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span
+                            ><span class="sr-only">Close</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <img
+                            src="res/Mosaic.png"
+                            id="mosaicSelectImage"
+                            alt="Mosaic for image selection"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bootstrap Offline -->
+        <!-- <script src="../Libraries/jquery-3.4.1.min.js"></script> -->
+        <!-- <script
+            type="text/javascript"
+            src="../Libraries/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js"
+        ></script> -->
+
+        <!-- Bootstrap CDN -->
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+
+        <script src="testBench.js"></script>
+
+        <!-- Function Libraries -->
+        <script src="interpolate.js"></script>
+        <script src="coord.js"></script>
+        <script src="affine.js"></script>
+        <script src="histogram.js"></script>
+        <script src="morphological.js"></script>
+        <script src="neighbourhood.js"></script>
+        <script src="point.js"></script>
+        <script src="changeView.js"></script>
+        <script src="projectTest.js"></script>
+    </body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Histogram</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+	<style>
+.grid {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    }
+	.cursor{
+		cursor:pointer;
+	}
+    .grid-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 25rem;
+        border-radius: 0.5rem;
+    }
+	.show-grid{
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.0);
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+.row {
+ content: "";
+ display: table;
+ clear: both;
+ height:50px;
+ padding:0px
+}
+.column {
+ float: left;
+ width: 60px;
+ padding:30px;
+}
+.pop{
+
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+.pop .up {
+ visibility: hidden;
+ width: 160px;
+ background-color: #555;
+ color: #fff;
+ text-align: center;
+ border-radius: 2px;
+ padding: 0px ;
+ position: absolute;
+ z-index: 1;
+ bottom: 100%;
+ left: 80%;
+ margin-left: -80px;
+}
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.div1 {
+float:left;
+
+margin-left:450px;
+margin-top:-500px;
+ padding-left:150px;
+ width: 300px;
+ height: 300px;
+ padding:10px;
+ border: 1px solid #ffffff;
+}
+.div_1 {
+
+ padding-left:50px;
+ width: 300px;
+ height: 300px;
+ padding:1px;
+
+}
+.div2 {
+ float:left;
+ width: 250px;
+ height: 100px;
+ padding: 10px;
+ border: 1px solid #ffffff;
+}
+
+.div3 {
+	
+margin-top:0px;
+ padding:20px;
+ width: 350px;
+ height: 250px;
+ padding: 5px;
+ border: 2px dotted #ffffff;
+}
+
+
+.btn {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  font-size: 14px;
+}
+.active, .btn:hover {
+  background-color: #666;
+  color: white;
+}
+
+input:checked {
+  height: 15px;
+  width: 15px;
+}
+	</style>
+<script>
+ var a;
+function myfunc(e) {
+ 
+
+var id= e[3];
+
+
+
+ 
+
+  
+  document.getElementById("input").innerHTML ="<canvas id='canvas' style='border: 1px solid; width:300px; height:300px;'></canvas>" ;
+  var canvas=document.getElementById('canvas');
+canvas.width=canvas.scrollWidth;
+canvas.height=canvas.scrollHeight;
+var ctx=canvas.getContext('2d');
+
+var image= new Image();
+image.onload=function(){
+ctx.drawImage(image,0,0,canvas.width,canvas.height);	
+
+}
+
+image.src="f"+id+".jpg";
+a="f"+id+".jpg";
+console.log(a);
+
+
+  document.getElementById("text").innerHTML="Select appropriate parameters and click on 'Run'."
+	toggleGrid();
+ 
+ }
+/* function histogram(data) {
+  let W=800
+  let H=W/2;
+  const svg = d3.select('svg');
+  const margin = {top: 20, right: 20, bottom: 30, left: 50};
+  const width = W - margin.left - margin.right;
+  const height = H - margin.top - margin.bottom;
+  let q = document.querySelector('svg');
+  q.style.width=width;
+  q.style.height=height;
+  if (yAxis) { d3.selectAll("g.y-axis").remove(); yAxis=false; }
+  function graphComponent(data, color) {
+    d3.selectAll(".bar-"+color).remove();
+    var data = Object.keys(data).map(function(key){ return {freq:data[key], idx:+key}});
+    var x = d3.scaleLinear()
+      .range([0, width])
+      .domain([0, d3.max(data, function(d) { return d.idx; })]);
+    var y = d3.scaleLinear()
+      .range([height, 0])
+      .domain([0, d3.max(data, function(d) { return d.freq; })]);
+    var g = svg.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    if (!yAxis) {
+      yAxis=true;
+      g.append("g")
+       .attr("class", "y-axis")
+       .attr("transform", "translate(" + -5 + ",0)")
+       .call(d3.axisLeft(y).ticks(10).tickSizeInner(10).tickSizeOuter(2));
+    }
+    g.selectAll(".bar-"+color)
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar-"+color)
+      .attr("fill", color)
+      .attr("x", function(d) { return x(d.idx); })
+      .attr("y", function(d) { return y(d.freq); })
+      .attr("width", 2)
+      .attr("opacity", 0.8)
+      .attr("height", function(d) { return height - y(d.freq); })    
+  }
+  graphComponent(data.gD, "green");
+  graphComponent(data.bD, "blue");
+  graphComponent(data.rD, "red");
+}*/
+ 
+
+
+ function run(){
+    var can = document.getElementById('out');
+    var ctx = can.getContext('2d');
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+	
+
+		var colorScales = {
+      'linearBlackAndWhite': function(values){
+        return d3.scale.linear()
+          .domain(d3.extent(values))
+          .range(['#000', '#fff']);
+      },
+      'histogramEqualize': function(values){
+        var buckets = 100;
+        var quantiles = d3.scale.quantile()
+        	.domain(values)
+        	.range(d3.range(buckets))
+        	.quantiles();
+
+        var stopCount = quantiles.length;
+        var linearScale = d3.scale.linear()
+        	.domain([0, stopCount - 1])
+        	.range([d3.rgb('rgb(0, 0, 0)'), d3.rgb('rgb(255, 255, 255)')]);
+        
+        var grayScale = d3.range(stopCount).map(function(d){
+          return linearScale(d);
+        });
+
+        return d3.scale.linear().domain(quantiles).range(grayScale);
+      }
+    };
+
+    var img = new Image;
+    img.onload = function(){
+
+      canvas.width = can.width = img.width;
+      canvas.height = can.height = img.height;
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+      context.drawImage(img, 0, 0, img.width, img.height);
+
+      var imgData = ctx.getImageData(0, 0, img.width, img.height);
+
+      var rasterData = [];
+      for(j = 0; j < (imgData.data.length / 4); j++){
+        var brightness = d3.lab(d3.rgb(imgData.data[j * 4], 
+                            imgData.data[j * 4 + 1], 
+                            imgData.data[j * 4 + 2])).l;
+        rasterData.push(imgData.data[j * 4] === 0 ? null : brightness);
+      }
+
+      var scale = colorScales.histogramEqualize(rasterData);
+
+      for(j = 0; j < rasterData.length; j++){
+        var scaledColor = scale(rasterData[j]);
+        var color = d3.rgb(scaledColor);
+        imgData.data[j * 4] = color.r;
+        imgData.data[j * 4 + 1] = color.g;
+        imgData.data[j * 4 + 2] = color.b;
+        imgData.data[j * 4 + 3] = 255;
+      }
+
+      ctx.putImageData(imgData, 0, 0);
+    };
+    img.crossOrigin = '';      
+	img.src=a;
+
+}
+
+
+
+
+ 
+ 
+   
+</script>
+	
+</head>
+<body style="background-color:powderblue;border-color:white">
+<h1 style="color:white;text-align:center;"> IMAGE HISTOGRAM</h1>
+<br><br>
+<div id="info_box">
+<h4>  Guidelines</h4>
+<p id="text" class="div2" style="border-style:dotted;border-width:2px;"> Start the Experiment by clicking on 'Select Image' and selecting an Input Image from the Mosaic </p>
+<button id="sel"  type="button" class="pop" style="margin-left:-270px; margin-top:160px" >Select Image</button>
+<button id="reset" type="button">Reset</button>
+<button id="run" type="button" onclick="run()">Run</button>
+
+
+<div class="grid">
+<div class="grid-content">
+
+
+<div class="row up" id="grid">
+ 	<div class="column">
+   	<img src="f1.jpg" id="img1" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="f2.jpg" id="img2" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="f3.jpg" id="img3" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+</div>
+<div class="row up" id="grid">
+ 	<div class="column">
+   	<img src="f4.jpg" id="img4" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="f5.jpg" id="img5" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="f6.jpg" id="img6" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+</div>
+<div class="row up" id="grid">
+ 	<div class="column">
+   	<img src="f7.jpg" id="img7" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="f8.jpg" id="img8" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="f9.jpg" id="img9" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+<script>
+	var grid = document.querySelector(".grid");
+    var pop = document.querySelector(".pop");
+    
+
+  
+
+   function toggleGrid() {
+       grid.classList.toggle("show-grid");
+   }
+
+   function windowOnClick(event) {
+       if (event.target === grid) {
+           toggleGrid();
+       }
+   }
+
+   pop.addEventListener("click", toggleGrid);
+      
+   window.addEventListener("click", windowOnClick);
+   function globalc(){
+   	document.getElementById('infilter').innerHTML=""
+	document.getElementById('inadapt').innerHTML=""
+	
+   }
+   function filterc(){
+		
+		 
+	
+	document.getElementById('infilter').innerHTML="<div><p>Size of Filter:</p><form action=''><input type='radio' id='filter2' value='filter2' checked='checked' name='choice2_2'>2<br><input type='radio' id='filter4' value='filter4' checked='checked' name='choice2_2'>4<br><input type='radio' id='filter6' value='filter6' checked='checked' name='choice2_2'>6<br></div>";
+	document.getElementById('inadapt').innerHTML=""
+	}
+ function adaptc(){
+		
+		 
+	
+	document.getElementById('inadapt').innerHTML="<div><p>Window Size:</p><form action=''><input type='radio' id='adapt50' value='adapt50' checked='checked' name='choice2_1'>50 x 50 pixels<br><input type='radio' id='adapt100' value='adapt100'  name='choice2_1'>100 x 100 pixels<br><br></div>";
+		document.getElementById('infilter').innerHTML=""
+	}
+ 
+ function myprocess(){
+ 
+ 	document.getElementById("linear_box").innerHTML="<p>Processing Options:</p><form action=''><input type='radio'  id='global' value='global' checked='checked' name='choice2' onclick='globalc()' > Global Histogram Equalization<br><span id='inglobal'></span><input type='radio' id='adapt' value='adapt' name='choice2' onclick='adaptc()'> Adaptive Histogram Equalization<br><span id='inadapt'></span><input type='radio' id='filter' value='filter' name='choice2' onclick='filterc()'> Filtering on Histogram<br><span id='infilter'></span></form> "
+	
+	
+	
+ } 
+
+
+ 
+ function myhist(){
+ 	document.getElementById("linear_box").innerHTML="<p>Histogram Type</p><form action=''><input type='radio'  id='full' value='full' checked='checked' name='choice1' > Full Image Histogram<br><input type='radio' id='sub' value='sub' name='choice1'> Sub-image Histogram<br></form> "
+	
+	
+ } 
+   
+</script>
+<br><br>
+<div id="myDIV">
+  <button id="linear" onclick="myhist()" class="btn ">Histogram</button>
+  <button id="non_linear" onclick="myprocess()" class="btn">Processing</button>
+  
+  
+</div>
+
+<div id="linear_box" class="div3"></div>
+
+
+
+
+
+
+
+
+
+<table class="div1_1">
+<tbody><tr><td><div id="input" class="div1" ></div><p align="center" style="margin-left:450px; margin-top:-150px">Input</p></td>
+<td><div id="output" class="div1" style="margin-left:60px"><canvas id='out' style=' border: 1px solid; width:300px; height:300px;'></canvas></div><p align="center" style="margin-left:80px; margin-top:-150px">Output</p></td></tr>
+</tbody></table>
+</body>
+</html>

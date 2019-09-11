@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Point Operations</title>
+<style>
+.grid {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    }
+	.cursor{
+		cursor:pointer;
+	}
+    .grid-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 35rem;
+        border-radius: 0.5rem;
+    }
+    .close-button {
+        float: right;
+        width: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        background-color: lightgray;
+    }
+    .close-button:hover {
+        background-color: darkgray;
+    }
+    .show-grid{
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.0);
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+.row {
+ content: "";
+ display: table;
+ clear: both;
+ height:50px;
+ padding:0px
+}
+.column {
+ float: left;
+ width: 60px;
+ padding:30px;
+}
+.pop{
+ border-radius: 5px;
+    border: 0;
+    width: 120px;
+    height:30px;
+    
+    background: #f4f4f4;
+ font-family:courier;
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+.pop1{
+	border-radius: 5px;
+    border: 0;
+    width: 80px;
+    height:30px;
+    font-family:courier;
+    background: #f4f4f4;
+	cursor: pointer;
+}
+.pop .up {
+ visibility: hidden;
+ width: 160px;
+ background-color: #555;
+ color: #fff;
+ text-align: center;
+ border-radius: 2px;
+ padding: 0px ;
+ position: absolute;
+ z-index: 1;
+ bottom: 125%;
+ left: 50%;
+ margin-left: -80px;
+}
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.div1 {
+ padding-left:150px;
+ width: 300px;
+ height: 300px;
+ padding:10px;
+ border: 1px solid #ffffff;
+}
+.div_1 {
+ padding-left:150px;
+ width: 300px;
+ height: 300px;
+ padding:1px;
+}
+.div2 {
+ padding-right:150px;
+ width: 250px;
+ height: 100px;
+ padding: 10px;
+ border: 1px solid #ffffff;
+}
+.div3 {
+	
+margin-top:10px;
+ padding:20px;
+ width: 350px;
+ height: 200px;
+ padding: 5px;
+ border: 2px dotted #ffffff;
+}
+
+.div1_1{
+ width: 780px;
+ height: 400px;
+ margin-left:500px;
+ margin-top:-800px;
+ padding:10px;
+}
+#info_box{
+ padding-right:150px;
+ width: 300px;
+ height: 250px;
+ padding: 10px;
+}
+.btn {
+	border-radius:5px;
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  font-family:courier;
+  cursor: pointer;
+  font-size: 14px;
+}
+.active, .btn:hover {
+  background-color: #666;
+  color: white;
+}
+.slidecontainer {
+  width: 100%;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 75%;
+  height: 15px;
+  border-radius: 5px;
+  background: #636161;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.slider:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer;
+}
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer;
+  }
+  [slider] {
+  position: relative;
+  height: 14px;
+  border-radius: 10px;
+  text-align: left;
+  margin: 45px 0 10px 0;
+}
+[slider] > div {
+  position: absolute;
+  left: 13px;
+  right: 15px;
+  height: 14px;
+}
+[slider] > div > [inverse-left] {
+  position: absolute;
+  left: 0;
+  height: 14px;
+  border-radius: 10px;
+  background-color: #636161;
+  margin: 0 7px;
+}
+[slider] > div > [inverse-right] {
+  position: absolute;
+  right: 0;
+  height: 14px;
+  border-radius: 10px;
+  background-color: #636161;
+  margin: 0 7px;
+}
+[slider] > div > [range] {
+  position: absolute;
+  left: 0;
+  height: 14px;
+  border-radius: 14px;
+  background-color: #636161 ;
+}
+[slider] > div > [thumb] {
+  position: absolute;
+  top: -7px;
+  z-index: 2;
+  height: 28px;
+  width: 28px;
+  text-align: left;
+  margin-left: -11px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  background-color: #000000;
+  border-radius: 50%;
+  outline: none;
+}
+[slider] > input[type=range] {
+  position: absolute;
+  pointer-events: none;
+  -webkit-appearance: none;
+  z-index: 3;
+  height: 14px;
+  top: -2px;
+  width: 255%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+}
+div[slider] > input[type=range]::-ms-track {
+  -webkit-appearance: none;
+  background: transparent;
+  color: transparent;
+}
+div[slider] > input[type=range]::-moz-range-track {
+  -moz-appearance: none;
+  background: transparent;
+  color: transparent;
+}
+div[slider] > input[type=range]:focus::-webkit-slider-runnable-track {
+  background: transparent;
+  border: transparent;
+}
+div[slider] > input[type=range]:focus {
+  outline: none;
+}
+div[slider] > input[type=range]::-ms-thumb {
+  pointer-events: all;
+  width: 28px;
+  height: 28px;
+  border-radius: 0px;
+  border: 0 none;
+  background: red;
+}
+div[slider] > input[type=range]::-moz-range-thumb {
+  pointer-events: all;
+  width: 28px;
+  height: 28px;
+  border-radius: 0px;
+  border: 0 none;
+  background: red;
+}
+div[slider] > input[type=range]::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 28px;
+  height: 28px;
+  border-radius: 0px;
+  border: 0 none;
+  background: red;
+  -webkit-appearance: none;
+}
+div[slider] > input[type=range]::-ms-fill-lower {
+  background: transparent;
+  border: 0 none;
+}
+div[slider] > input[type=range]::-ms-fill-upper {
+  background: transparent;
+  border: 0 none;
+}
+div[slider] > input[type=range]::-ms-tooltip {
+  display: none;
+}
+[slider] > div > [sign] {
+  opacity: 0;
+  position: absolute;
+  margin-left: -11px;
+  top: -39px;
+  z-index:3;
+  background-color: #1ABC9C;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+  -webkit-border-radius: 28px;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  text-align: center;
+}
+[slider] > div > [sign]:after {
+  position: absolute;
+  content: '';
+  left: 0;
+  border-radius: 16px;
+  top: 19px;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top-width: 16px;
+  border-top-style: solid;
+  border-top-color: #1ABC9C;
+}
+[slider] > div > [sign] > span {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 28px;
+}
+[slider]:hover > div > [sign] {
+  opacity: 1;
+}
+</style>
+<script>
+function myfunc(e) {
+ 
+var id= e[3];
+ 
+  
+  document.getElementById("input").innerHTML ="<canvas id='canvas' style='border: 1px solid; width:300px; height:300px;'></canvas>" ;
+  var canvas=document.getElementById('canvas');
+  var can=document.getElementById('out');
+canvas.width=canvas.scrollWidth;
+can.width=can.scrollWidth;
+canvas.height=canvas.scrollHeight;
+can.height=can.scrollHeight;
+var ctx=canvas.getContext('2d');
+var context=can.getContext('2d');
+var image= new Image();
+image.onload=function(){
+ctx.drawImage(image,0,0,canvas.width,canvas.height);
+context.drawImage(image,0,0,can.width,can.height);	
+}
+image.src="p"+id+".jpg";
+  document.getElementById("text").innerHTML="Select appropriate parameters and click on 'Run'."
+  toggleGrid();
+ 
+ }
+ var z=0;
+
+</script>
+
+</head>
+<body background="b2.jpg"; font-family: "Times New Roman">
+<h1 style="color:white;text-align:center;"> POINT OPERATIONS </h1>
+<br><br>
+<div id="info_box">
+<h4 style="color:white; font-size:19px;font-family:courier;">Guidelines</h4>
+<p id="text" class="div2" style="border-style:dotted;border-width:2px; color:white ;font-family:courier;"> Start the Experiment by clicking on 'Select Image' and selecting an Input Image from the Mosaic </p>
+
+<button id="sel" class="pop" type="button">Select Image</button>
+<div class="grid">
+<div class="grid-content">
+<span class="close-button">x</span>
+
+<div class="row up" id="grid">
+ 	<div class="column">
+   	<img src="p1.jpg" id="img1" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="p2.jpg" id="img2" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="p3.jpg" id="img3" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+</div>
+<div class="row up" id="grid">
+ 	<div class="column">
+   	<img src="p4.jpg" id="img4" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="p5.jpg" id="img5" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="p6.jpg" id="img6" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+</div>
+<div class="row up" id="grid">
+ 	<div class="column">
+   	<img src="p7.jpg" id="img7" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="p8.jpg" id="img8" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+ 	<div class="column">
+   	<img src="p9.jpg" id="img9" width="100" height="100" onclick="myfunc(id)" class="hover-shadow cursor">
+ 	</div>
+</div>
+</div>
+</div>
+
+<script>
+var grid = document.querySelector(".grid");
+    var pop = document.querySelector(".pop");
+    var closeButton = document.querySelector(".close-button");
+  
+   function toggleGrid() {
+       grid.classList.toggle("show-grid");
+   }
+   function windowOnClick(event) {
+       if (event.target === grid) {
+           toggleGrid();
+       }
+   }
+   pop.addEventListener("click", toggleGrid);
+   closeButton.addEventListener("click", toggleGrid);   
+   window.addEventListener("click", windowOnClick);
+   
+   function mynon()
+{	z=2;
+	document.getElementById("linear_box").innerHTML = "<p style='color:white;font-family:courier;'>Log function<br><br>f(r):<br> <span id='logc'></span> xlog10(1+r)</p><div class='slidecontainer'><p>c:</p><input type='range' min='0' max='254' value='50' class='slider' id='log'></div>";
+var slider3 = document.getElementById("log");
+var output3 = document.getElementById("logc");
+slider3.oninput = function() {
+  output3.innerHTML = this.value;
+  
+  
+}
+}
+   function myclip()
+{
+  z=3;
+document.getElementById("linear_box").innerHTML="<p style='color:white;font-family:courier;'>Clipper</p><p style='color:white;font-family:courier;'>Window</p><p style='color:white;font-family:courier;'>&nbsp&nbsp&nbsp&nbsp&nbspStart:<input type='number' id='clips' value='0' style='width:3em' > &nbsp&nbsp&nbsp End:<input type='number' id='clipe' style='width:3em' value='255'> </p><div class='slidecontainer'><p style='color:white;font-family:courier;'>slope(m): <span id='logm'></span></p><input type='range' min='0.00' max='1.00' value='0.5' step='0.01'  class='slider' id='slidm'></div>";
+var slider3 = document.getElementById("slidm");
+var output3 = document.getElementById("logm");
+slider3.oninput = function() {
+  output3.innerHTML =this.value;
+  }
+  
+  
+  
+}
+
+	function mywindow()
+	{
+		z=4;
+		document.getElementById("linear_box").innerHTML="<p style='color:white; font-family:courier;'>Windowing</p><p style='color:white;font-family:courier;'>Window</p><p style='color:white;font-family:courier;'>&nbsp&nbsp&nbsp&nbsp&nbspStart:<input type='number' id='windows' value='0' style='width:3em' >  &nbsp&nbsp&nbsp End:<input type='number' id='windowe' style='width:3em' value='255'> </p><div class='slidecontainer'><p style='color:white; font-family:courier;'>slope(m): <span id='winm'></span></p><input type='range' min='0.00' max='1.00' value='0.5' step='0.01'  class='slider' id='winslidm'></div>  "
+var slider3 = document.getElementById("winslidm");
+var output3 = document.getElementById("winm");
+slider3.oninput = function() {
+  output3.innerHTML =this.value;
+  }		
+		
+		
+		
+		
+	}
+
+	
+  function mylin()
+{	z=1;
+	document.getElementById("linear_box").innerHTML = "<p style='color:white;font-family:courier;'>f(r): <span id='idm'></span>r+<span id='idc'></span></p><div class='slidecontainer'><p style='color:white;font-family:courier;'>slope(m):</p><input type='range' min='-57.3' max='57.3' value='50' class='slider' id='m'><br><p style='color:white;font-family:courier;'>offset(c):</p><input type='range' min='-255' max='255' value='50' class='slider' id='c'>";
+var slider1 = document.getElementById("m");
+
+var output1 = document.getElementById("idm");
+var slider2 = document.getElementById("c");
+var output2 = document.getElementById("idc");
+output1.innerHTML = slider1.value;
+output2.innerHTML = slider2.value;
+slider1.oninput = function() {
+  output1.innerHTML = this.value;
+  
+  
+}
+slider2.oninput = function() {
+  output2.innerHTML = this.value;	
+}
+}
+  function run()
+{
+
+	
+var canvas=document.getElementById('canvas');
+if(canvas && canvas.getContext("2d"))
+{ 
+var context= canvas.getContext("2d");
+for(var i=0; i< 10; i++) {
+  var myimg = "img" + i;
+  var imgsrc=document.getElementById('myimg')
+}
+var Img=context.getImageData(0,0,canvas.width,canvas.height);
+var pixel=Img.data;
+var init=1;
+while(init<context.canvas.height){
+	switch(z){
+	case 1:{
+	var slope=parseFloat(document.getElementById("idm").innerHTML);
+	var offset=parseFloat(document.getElementById("idc").innerHTML);
+	drawlin(slope,offset);
+	for(var j=0;j<5;j++){
+	var row=(init+j)*context.canvas.width*4;
+	for(var i=0;i<context.canvas.width*4;i+=4){
+	
+	
+		pixel[row+i]=(slope*pixel[row+i])+offset;
+		pixel[row+i+1]=(slope*pixel[row+i+1])+offset;
+		pixel[row+i+2]=(slope*pixel[row+i+2])+offset;
+		
+		
+	}
+		
+		
+	}
+	init+=5;
+	}break;
+	case 2:{
+	var log=parseFloat(document.getElementById("logc").innerHTML);
+	
+	drawnon(log);
+	for(var j=0;j<5;j++){
+	var row=(init+j)*context.canvas.width*4;
+	for(var i=0;i<context.canvas.width*4;i+=4){
+	
+	
+		pixel[row+i]=log*Math.log10(1+pixel[row+i]);
+		
+		pixel[row+i+1]=log*Math.log10(1+pixel[row+i+1]);
+		pixel[row+i+2]=log*Math.log10(1+pixel[row+i+2]);
+		
+		
+	}
+		
+		
+	}
+	init+=5;
+	}break;
+	case 3:{
+	var clope=parseFloat(document.getElementById("logm").innerHTML)
+	var clstrt=parseInt(document.getElementById("clips").value);
+	
+	var clend=parseInt(document.getElementById("clipe").value);
+	
+	drawclip(clope,clstrt,clend);
+	
+for(var j=0;j<5;j++){
+	var row=(init+j)*context.canvas.width*4;
+	for(var i=0;i<context.canvas.width*4;i+=4){
+	
+	for(var c=0;c<3;c++){
+		 if( pixel[row+i+c]<clstrt)
+		 	pixel[row+i+c]=0;
+		else if (clstrt<=pixel[row+i+c] && pixel[row+i+c]<=clend)
+			pixel[row+i+c]=clope*pixel[row+i+c];
+		else if( pixel[row+i+c]>clend)
+			pixel[row+i+c]=255 ;
+		}
+				
+	}
+		
+	}	
+	init+=5;
+	}break;
+		case 4:{
+	var winde=parseFloat(document.getElementById("winm").innerHTML)
+	var winds=parseInt(document.getElementById("windows").value);
+	
+	var wend=parseInt(document.getElementById("windowe").value);
+	drawindow(winde,winds,wend);
+	
+	
+for(var j=0;j<5;j++){
+	var row=(init+j)*context.canvas.width*4;
+	for(var i=0;i<context.canvas.width*4;i+=4){
+	
+	for(var c=0;c<3;c++){
+		 if( pixel[row+i+c]<winds)
+		 	pixel[row+i+c]=0;
+		else if (winds<=pixel[row+i+c] && pixel[row+i+c]<=wend)
+			pixel[row+i+c]=clope*pixel[row+i+c];
+		else if( pixel[row+i+c]>wend)
+			pixel[row+i+c]=0 ;
+		}
+				
+	}
+		
+	}	
+	init+=5;
+	}
+	
+	}
+	}
+	document.getElementById("text").innerHTML="Click on 'Reset' to start from the beginning."
+	}
+	
+
+	
+
+var output=document.getElementById('out');
+var ctx=output.getContext("2d");
+context.putImageData(Img,0,0);
+	
+
+
+}
+</script>
+
+
+<button type="button" class="pop1" onClick="window.location.reload();">Reset</button>
+<button id="run" type="button" class="pop1" onclick="run()">Run</button>
+</div>
+<br>
+<div id="myDIV">
+  <button id="linear" onclick="mylin()" class="btn">Linear</button>
+  <button id="non_linear" onclick="mynon()" class="btn">Non Linear</button>
+  <button id="clipping" onclick="myclip()" class="btn">Clipping</button>
+  <button id="window" onclick="mywindow()" class="btn">Window</button>
+  
+</div>
+
+
+<script>
+var header = document.getElementById("myDIV");
+var btns = header.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+}
+</script>
+
+
+<div id="linear_box" class="div3">
+
+</div>
+
+<canvas id="graph" width="255" height="255" style="border:1px solid #666562; margin-left:50px; margin-top:10px;">
+
+</canvas>
+<div style="font-size:smaller;color:#666562;font-family:courier;"><div
+style="position:absolute;top:940px;left:41px;width:31.428571428571427px;text-align:center">0</div><div
+  style="position:absolute;top:940px;left:91px;width:31.428571428571427px;text-align:center" >50</div><div
+   style="position:absolute;top:940px;left:141px;width:31.428571428571427px;text-align:center" >100</div><div
+    style="position:absolute;top:940px;left:191px;width:31.428571428571427px;text-align:center">150</div><div
+	 style="position:absolute;top:940px;left:241px;width:31.428571428571427px;text-align:center" >200</div><div
+	  style="position:absolute;top:940px;left:291px;width:31.428571428571427px;text-align:center" >250</div><div 
+style="position:absolute;top:880px;right:1215px;width:15px;text-align:right">50</div><div 
+style="position:absolute;top:830px;right:1215px;width:15px;text-align:right" >100</div><div 
+style="position:absolute;top:780px;right:1215px;width:15px;text-align:right">150</div><div 
+style="position:absolute;top:730px;right:1215px;width:15px;text-align:right" >200</div><div 
+style="position:absolute;top:680px;right:1215px;width:15px;text-align:right" >250</div></div>
+
+<script>
+function drawlin(m,co){
+	var c=document.getElementById("graph");
+	var ctx=c.getContext('2d');
+	ctx.clearRect(0,0,c.width,c.height);
+	var y=co;
+
+
+	ctx.moveTo(0,255-co);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();
+		ctx.beginPath();
+	for(x=1;x<256;x++)
+	{	
+		y=(m*x)+co;
+		
+		ctx.lineTo(x,255-y);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();
+		
+		
+	}
+	
+
+}
+
+function drawnon(log){
+	
+		var c=document.getElementById("graph");
+	var ctx=c.getContext('2d');
+	ctx.clearRect(0,0,c.width,c.height);
+	
+	
+	ctx.beginPath();
+ctx.moveTo(0, 255);
+	
+	for(x=1;x<256;x++)
+	{	
+		y=log * (Math.log(1+x)/Math.LN10);
+		
+		ctx.lineTo(x,255-y);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();
+		
+		
+	}
+	
+	
+}
+function drawclip(s,a,b){
+	var c=document.getElementById("graph");
+	var ctx=c.getContext('2d');
+	ctx.clearRect(0,0,c.width,c.height);
+	ctx.beginPath();
+ctx.moveTo(0, 255);
+	for(x=1;x<256;x++)
+	{	if(x<a){
+		 	y=0;	ctx.lineTo(x,255-y);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();}
+		else if (a<=x && x<=b){
+			y=s*x;	ctx.lineTo(x,255-y);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();}
+		else if( x>b){
+			y=255 ;	ctx.lineTo(x,255-y);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();}
+		
+		
+	
+		
+		
+	}
+	
+
+}
+function drawindow(s,a,b){
+	var c=document.getElementById("graph");
+	var ctx=c.getContext('2d');
+	ctx.clearRect(0,0,c.width,c.height);
+	ctx.beginPath();
+ctx.moveTo(0, 255);
+	for(x=1;x<256;x++)
+	{	if(x<a){
+		 	y=0;	ctx.lineTo(x,255-y);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();}
+		else if (a<=x && x<=b){
+			y=s*x;	ctx.lineTo(x,255-y);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();}
+		else if( x>b){
+			y=0 ;	ctx.lineTo(x,255-y);
+	ctx.strokeStyle = 'blue'
+	ctx.stroke();}
+		
+		
+	
+		
+		
+	}
+	
+
+}
+</script>
+
+
+<table class="div1_1">
+<tbody><tr><td><div id="input" class="div1"></div><p align="center" style="color: white;font-family:courier;font-size:17px">Output Image</p><p align="center"></p></td>
+<td><div id="output" class="div1"><canvas id='out' style=' border: 1px solid; width:300px; height:300px;'></canvas></div><p align="center" style="color: white;font-family:courier;font-size:17px">Input Image</p><p align="center"></p></td></tr>
+</tbody></table>
+</body>
+</html>
