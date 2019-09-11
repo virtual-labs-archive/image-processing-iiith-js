@@ -18,7 +18,6 @@ img {
     width: 18.750em;
     height: 18.750em;
     border: #0000ff solid 0.2em;
-    margin: 0.5em;
     margin-left: 0;
 }
 
@@ -31,6 +30,8 @@ input[type="radio"] {
     width: 660px;
     max-width: none;
     flex: none;
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
 }
 
 #heading h1 {
@@ -73,11 +74,11 @@ input[type="radio"] {
 
 #nextText,
 #parameters,
-#mosaicAndBtns {
+#Buttons {
     font-size: 0.9em;
 }
 
-#mosaicAndBtns {
+#Buttons {
     padding: 0.5em;
     width: 20em;
     margin: 0 auto;
@@ -110,43 +111,11 @@ button {
     color: #ffffff;
 }
 
-#mosaic {
-    margin: 0.7em;
-    margin-right: 0.8em;
-    border-radius: 0.5em;
-    background-color: #808080;
-}
-
-#mosaicImgDiv {
-    width: 18.750em;
-    height: 18.750em;
-    cursor: pointer;
-    margin: 0 auto 0.7em auto;
-    flex: none;
-    padding: 0;
-}
 
 #run {
     float: right;
 }
 
-.mosaicImg {
-    width: 6.250em;
-    height: 6.250em;
-    border: None;
-    float: left;
-}
-
-.mosaicImg img {
-    width: 100%;
-    height: 100%;
-    border: none;
-    margin: 0;
-}
-
-.mosaicImg:hover {
-    opacity: 0.5;
-}
 
 #leftContent {
     margin-right: 1%;
@@ -169,8 +138,77 @@ button {
 }
 
 #processingInfo {
-    margin-top: 0.5em;
-    padding: 0.2em;
+    padding: 0.7em;
+    margin: 0.7em;
+    margin-right: 0.8em;
+    border-radius: 0.5em;
+    background-color: #808080;
+}
+
+#processingInfo p {
+    margin: 0.7em;
+}
+
+#inputImgDiv {
+    width: 18.750em;
+    height: 18.750em;
+    padding: 0;
+}
+#inputImgDiv p {
+    bottom: 0;
+    left: 0;
+}
+#inputImg,
+#grid,
+#gridPoints,
+#outputImg,
+#distanceResult {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+#inputImg,
+#grid,
+#gridPoints {
+    margin: 0;
+}
+
+#outputImg,
+#distanceResult {
+    margin-left: 0.5em;
+}
+
+#grid, 
+#distanceResult {
+    z-index: 10;
+}
+
+#distanceResult {
+    display: flex;
+    align-items: center;
+
+}
+
+#distanceResult h4 {
+    margin-left: 0.7em;
+    margin-right: 0.7em;
+}
+
+#gridPoints {
+    z-index: 20;
+}
+
+#start-point {
+    border: 0.188em solid #ffff00;
+    position: absolute;
+}
+
+#end-point {
+    border: 0.188em solid #800080;
+    position: absolute;
 }
 
 @media screen and (min-width: 1080px) {
