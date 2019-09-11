@@ -1,0 +1,9 @@
+1.clone/download the repository
+2.cross check the requirement.txt (should install the packages)
+3.invoke venv using commad in terminal
+	 "source venv/bin/activate"
+4.run the python script(process.py)
+	"python process.py"
+5.open the link provided as
+	"http://127.0.0.1:5000/"
+6.deployment completed follow instructions in "Procedure Documentation.docx" available in documentation

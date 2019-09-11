@@ -1,0 +1,17 @@
+	
+
+1.python
+	-"https://realpython.com/installing-python/"
+2.cv2
+	-"https://pypi.org/project/opencv-python/" follow the instructions
+3.matplotlib 
+	-https://matplotlib.org/3.1.1/users/installing.html
+4.imutils
+	-for windows
+		"https://stackoverflow.com/questions/34161318/how-to-install-imutils-0-2-for-python-in-windows-07"
+	-for linux
+		"https://pypi.org/project/imutils/"
+	
+5.flask
+	"https://www.tutorialspoint.com/flask/flask_environment.htm"
+	note: virtualenv is already installed as venv
