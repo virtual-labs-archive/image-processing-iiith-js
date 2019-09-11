@@ -617,8 +617,9 @@ redrawGraph(cont);
 
 
 </li>
-<li><a href="colour.php" target="_self" >Experiment</a>
-
+<li>
+<!--<a href="colour.php" target="_self" >Experiment</a> -->
+<a href="color/Codes/exp_color.html">Experiment</a>
 
 </li>
 <li><a href="#" target="_self" >Assessment</a>
